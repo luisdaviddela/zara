@@ -1,653 +1,142 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <bnb:BottomBarPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:view="clr-namespace:FCEApp;assembly=FCEApp"
              x:Class="FCEApp.View.Home.Inspeccion.InspeccionTrimestral"
              xmlns:z="clr-namespace:Zumero;assembly=Zumero.DataGrid"
              xmlns:bnb="clr-namespace:BottomBar.XamarinForms;assembly=BottomBar.XamarinForms"
              Title="Inspección Trimestral">
     <ContentPage Title="Herramientas" Icon="herramienta.png"
                  bnb:BottomBarPageExtensions.TabColor="#00A062">
+       
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <z:DataGrid Grid.Row="0" x:Name="datagridHerramientas">
-                <z:DataGrid.Columns>
-                    <z:Column>
-                        <z:Column.HeaderView>
-                            <Label Text="Código" BackgroundColor="#f4f4f2" TextColor="#00A062" FontSize="Small" HorizontalTextAlignment="Center"></Label>
-                        </z:Column.HeaderView>
-                        <z:Column.Template>
-                            <DataTemplate>
-                                <Label Text="{Binding CodigoHerramienta}" FontSize="Micro"></Label>
-                            </DataTemplate>
-                        </z:Column.Template>
-                    </z:Column>
-                    <z:Column>
-                        <z:Column.HeaderView>
-                            <Label Text="Descripción" BackgroundColor="#f4f4f2" TextColor="#00A062" FontSize="Small" HorizontalTextAlignment="Center"></Label>
-                        </z:Column.HeaderView>
-                        <z:Column.Template>
-                            <DataTemplate>
-                                <Label Text="{Binding DescripcionHerramienta}" FontSize="Micro"></Label>
-                            </DataTemplate>
-                        </z:Column.Template>
-                    </z:Column>
-                    <z:Column>
-                        <z:Column.HeaderView>
-                            <Label Text="Unidad" BackgroundColor="#f4f4f2" TextColor="#00A062" FontSize="Small" HorizontalTextAlignment="Center"></Label>
-                        </z:Column.HeaderView>
-                        <z:Column.Template>
-                            <DataTemplate>
-                                <Label Text="{Binding UnidadHerramienta}" FontSize="Micro"></Label>
-                            </DataTemplate>
-                        </z:Column.Template>
-                    </z:Column>
-                    <z:Column>
-                        <z:Column.HeaderView>
-                            <Label Text="Cantidad" BackgroundColor="#f4f4f2" TextColor="#00A062" FontSize="Small" HorizontalTextAlignment="Center"></Label>
-                        </z:Column.HeaderView>
-                        <z:Column.Template>
-                            <DataTemplate>
-                                <Label Text="{Binding CantidadHerramienta}" FontSize="Micro"></Label>
-                            </DataTemplate>
-                        </z:Column.Template>
-                    </z:Column>
-                    <z:Column>
-                        <z:Column.HeaderView>
-                            <Label Text="Mal estado" BackgroundColor="#f4f4f2" TextColor="#00A062" FontSize="Small" HorizontalTextAlignment="Center"></Label>
-                        </z:Column.HeaderView>
-                        <z:Column.Template>
-                            <DataTemplate>
-                                <Entry Text="{Binding MalEstadoHerramienta}" FontSize="Micro"></Entry>
-                            </DataTemplate>
-                        </z:Column.Template>
-                    </z:Column>
-                    <z:Column>
-                        <z:Column.HeaderView>
-                            <Label Text="Observaciones" BackgroundColor="#f4f4f2" TextColor="#00A062" FontSize="Small" HorizontalTextAlignment="Center"></Label>
-                        </z:Column.HeaderView>
-                        <z:Column.Template>
-                            <DataTemplate>
-                                <Picker Title="{Binding CodigoHerramienta}" >
-
-                                </Picker>
-                                <!--<Label Text="{Binding ObservacionesHerramienta}" FontSize="Micro"></Label>-->
-                            </DataTemplate>
-                        </z:Column.Template>
-                    </z:Column>
-                    <z:Column>
-                        <z:Column.HeaderView>
-                            <Label Text="Faltante" BackgroundColor="#f4f4f2" TextColor="#00A062" FontSize="Small" HorizontalTextAlignment="Center"></Label>
-                        </z:Column.HeaderView>
-                        <z:Column.Template>
-                            <DataTemplate>
-                                <Entry Text="{Binding FaltanteHerramienta}" FontSize="Micro"></Entry>
-                            </DataTemplate>
-                        </z:Column.Template>
-                    </z:Column>
-                    <z:Column>
-                        <z:Column.HeaderView>
-                            <Label Text="Observaciones" BackgroundColor="#f4f4f2" TextColor="#00A062" FontSize="Small" HorizontalTextAlignment="Center"></Label>
-                        </z:Column.HeaderView>
-                        <z:Column.Template>
-                            <DataTemplate>
-                                <Picker x:Name="PicOb">
-                                </Picker>
-                            </DataTemplate>
-                        </z:Column.Template>
-                    </z:Column>
-                    <z:Column>
-                        <z:Column.HeaderView>
-                            <Label Text="Guardar" BackgroundColor="#f4f4f2" TextColor="#00A062" FontSize="Small" HorizontalTextAlignment="Center"></Label>
-                        </z:Column.HeaderView>
-                        <z:Column.Template>
-                            <DataTemplate>
-                                <Switch Toggled="SwitchGuardar_OnChanged"></Switch>
-                            </DataTemplate>
-                        </z:Column.Template>
-                    </z:Column>
-                </z:DataGrid.Columns>
-            </z:DataGrid>
-            <Button Grid.Row="1" 
-                    Text="Hola" 
-                    Clicked="Button_Clicked"/>
+            <ListView x:Name="listViewH" 
+                      SelectedItem="{Binding SelcetedItem,Mode=TwoWay}" 
+                      ItemSelected="EvetClicked"
+              RowHeight="120" 
+              BackgroundColor="White" >
+                    <ListView.ItemTemplate >
+                        <DataTemplate >
+                            <ViewCell>
+                                <view:HerramientasTemplate/>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+           
         </Grid>
     </ContentPage>
     <ContentPage Title="Eq.Prueba" Icon="eqprueba.png"
                  bnb:BottomBarPageExtensions.TabColor="#00A062">
-        <z:DataGrid x:Name="datagridEPrueba">
-            <z:DataGrid.Columns>
-                <z:Column>
-                    <z:Column.HeaderView>
-                        <Label Text="Código" BackgroundColor="#f4f4f2" TextColor="#00A062" FontSize="Small" HorizontalTextAlignment="Center"></Label>
-                    </z:Column.HeaderView>
-                    <z:Column.Template>
-                        <DataTemplate>
-                            <Label Text="{Binding CodigoHerramienta}" FontSize="Micro"></Label>
-                        </DataTemplate>
-                    </z:Column.Template>
-                </z:Column>
-                <z:Column>
-                    <z:Column.HeaderView>
-                        <Label Text="Descripción" BackgroundColor="#f4f4f2" TextColor="#00A062" FontSize="Small" HorizontalTextAlignment="Center"></Label>
-                    </z:Column.HeaderView>
-                    <z:Column.Template>
-                        <DataTemplate>
-                            <Label Text="{Binding DescripcionHerramienta}" FontSize="Micro"></Label>
-                        </DataTemplate>
-                    </z:Column.Template>
-                </z:Column>
-                <z:Column>
-                    <z:Column.HeaderView>
-                        <Label Text="Unidad" BackgroundColor="#f4f4f2" TextColor="#00A062" FontSize="Small" HorizontalTextAlignment="Center"></Label>
-                    </z:Column.HeaderView>
-                    <z:Column.Template>
-                        <DataTemplate>
-                            <Label Text="{Binding UnidadHerramienta}" FontSize="Micro"></Label>
-                        </DataTemplate>
-                    </z:Column.Template>
-                </z:Column>
-                <z:Column>
-                    <z:Column.HeaderView>
-                        <Label Text="Cantidad" BackgroundColor="#f4f4f2" TextColor="#00A062" FontSize="Small" HorizontalTextAlignment="Center"></Label>
-                    </z:Column.HeaderView>
-                    <z:Column.Template>
-                        <DataTemplate>
-                            <Label Text="{Binding CantidadHerramienta}" FontSize="Micro"></Label>
-                        </DataTemplate>
-                    </z:Column.Template>
-                </z:Column>
-                <z:Column>
-                    <z:Column.HeaderView>
-                        <Label Text="Mal estado" BackgroundColor="#f4f4f2" TextColor="#00A062" FontSize="Small" HorizontalTextAlignment="Center"></Label>
-                    </z:Column.HeaderView>
-                    <z:Column.Template>
-                        <DataTemplate>
-                            <Entry Text="{Binding MalEstadoHerramienta}" FontSize="Micro"></Entry>
-                        </DataTemplate>
-                    </z:Column.Template>
-                </z:Column>
-                <z:Column>
-                    <z:Column.HeaderView>
-                        <Label Text="Observaciones" BackgroundColor="#f4f4f2" TextColor="#00A062" FontSize="Small" HorizontalTextAlignment="Center"></Label>
-                    </z:Column.HeaderView>
-                    <z:Column.Template>
-                        <DataTemplate>
-                            <Picker>
-                                <Picker.Items>
-                                    <x:String>Se rompió</x:String>
-                                    <x:String>Mantenimiento</x:String>
-                                </Picker.Items>
-                            </Picker>
-                            <!--<Label Text="{Binding ObservacionesHerramienta}" FontSize="Micro"></Label>-->
-                        </DataTemplate>
-                    </z:Column.Template>
-                </z:Column>
-                <z:Column>
-                    <z:Column.HeaderView>
-                        <Label Text="Faltante" BackgroundColor="#f4f4f2" TextColor="#00A062" FontSize="Small" HorizontalTextAlignment="Center"></Label>
-                    </z:Column.HeaderView>
-                    <z:Column.Template>
-                        <DataTemplate>
-                            <Entry Text="{Binding FaltanteHerramienta}" FontSize="Micro"></Entry>
-                        </DataTemplate>
-                    </z:Column.Template>
-                </z:Column>
-                <z:Column>
-                    <z:Column.HeaderView>
-                        <Label Text="Observaciones" BackgroundColor="#f4f4f2" TextColor="#00A062" FontSize="Small" HorizontalTextAlignment="Center"></Label>
-                    </z:Column.HeaderView>
-                    <z:Column.Template>
-                        <DataTemplate>
-                            <Picker>
-                                <Picker.Items>
-                                    <x:String>Se perdió</x:String>
-                                </Picker.Items>
-                            </Picker>
-                        </DataTemplate>
-                    </z:Column.Template>
-                </z:Column>
-                <z:Column>
-                    <z:Column.HeaderView>
-                        <Label Text="Guardar" BackgroundColor="#f4f4f2" TextColor="#00A062" FontSize="Small" HorizontalTextAlignment="Center"></Label>
-                    </z:Column.HeaderView>
-                    <z:Column.Template>
-                        <DataTemplate>
-                            <Switch Toggled="SwitchGuardar_OnChanged"></Switch>
-                        </DataTemplate>
-                    </z:Column.Template>
-                </z:Column>
-            </z:DataGrid.Columns>
-        </z:DataGrid>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <ListView x:Name="listViewEqP" 
+                      SelectedItem="{Binding SelcetedItem,Mode=TwoWay}" 
+                      ItemSelected="EvetClicked"
+              RowHeight="120" 
+              BackgroundColor="White" >
+                <ListView.ItemTemplate >
+                    <DataTemplate >
+                        <ViewCell>
+                            <view:HerramientasTemplate/>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+        </Grid>
     </ContentPage>
     <ContentPage Title="H.Menor" Icon="hmenor"
                  bnb:BottomBarPageExtensions.TabColor="#00A062">
-        <z:DataGrid x:Name="datagridHMenor">
-            <z:DataGrid.Columns>
-                <z:Column>
-                    <z:Column.HeaderView>
-                        <Label Text="Código" BackgroundColor="#f4f4f2" TextColor="#00A062" FontSize="Small" HorizontalTextAlignment="Center"></Label>
-                    </z:Column.HeaderView>
-                    <z:Column.Template>
-                        <DataTemplate>
-                            <Label Text="{Binding CodigoHerramienta}" FontSize="Micro"></Label>
-                        </DataTemplate>
-                    </z:Column.Template>
-                </z:Column>
-                <z:Column>
-                    <z:Column.HeaderView>
-                        <Label Text="Descripción" BackgroundColor="#f4f4f2" TextColor="#00A062" FontSize="Small" HorizontalTextAlignment="Center"></Label>
-                    </z:Column.HeaderView>
-                    <z:Column.Template>
-                        <DataTemplate>
-                            <Label Text="{Binding DescripcionHerramienta}" FontSize="Micro"></Label>
-                        </DataTemplate>
-                    </z:Column.Template>
-                </z:Column>
-                <z:Column>
-                    <z:Column.HeaderView>
-                        <Label Text="Unidad" BackgroundColor="#f4f4f2" TextColor="#00A062" FontSize="Small" HorizontalTextAlignment="Center"></Label>
-                    </z:Column.HeaderView>
-                    <z:Column.Template>
-                        <DataTemplate>
-                            <Label Text="{Binding UnidadHerramienta}" FontSize="Micro"></Label>
-                        </DataTemplate>
-                    </z:Column.Template>
-                </z:Column>
-                <z:Column>
-                    <z:Column.HeaderView>
-                        <Label Text="Cantidad" BackgroundColor="#f4f4f2" TextColor="#00A062" FontSize="Small" HorizontalTextAlignment="Center"></Label>
-                    </z:Column.HeaderView>
-                    <z:Column.Template>
-                        <DataTemplate>
-                            <Label Text="{Binding CantidadHerramienta}" FontSize="Micro"></Label>
-                        </DataTemplate>
-                    </z:Column.Template>
-                </z:Column>
-                <z:Column>
-                    <z:Column.HeaderView>
-                        <Label Text="Mal estado" BackgroundColor="#f4f4f2" TextColor="#00A062" FontSize="Small" HorizontalTextAlignment="Center"></Label>
-                    </z:Column.HeaderView>
-                    <z:Column.Template>
-                        <DataTemplate>
-                            <Entry Text="{Binding MalEstadoHerramienta}" FontSize="Micro"></Entry>
-                        </DataTemplate>
-                    </z:Column.Template>
-                </z:Column>
-                <z:Column>
-                    <z:Column.HeaderView>
-                        <Label Text="Observaciones" BackgroundColor="#f4f4f2" TextColor="#00A062" FontSize="Small" HorizontalTextAlignment="Center"></Label>
-                    </z:Column.HeaderView>
-                    <z:Column.Template>
-                        <DataTemplate>
-                            <Picker>
-                                <Picker.Items>
-                                    <x:String>Se rompió</x:String>
-                                    <x:String>Mantenimiento</x:String>
-                                </Picker.Items>
-                            </Picker>
-                            <!--<Label Text="{Binding ObservacionesHerramienta}" FontSize="Micro"></Label>-->
-                        </DataTemplate>
-                    </z:Column.Template>
-                </z:Column>
-                <z:Column>
-                    <z:Column.HeaderView>
-                        <Label Text="Faltante" BackgroundColor="#f4f4f2" TextColor="#00A062" FontSize="Small" HorizontalTextAlignment="Center"></Label>
-                    </z:Column.HeaderView>
-                    <z:Column.Template>
-                        <DataTemplate>
-                            <Entry Text="{Binding FaltanteHerramienta}" FontSize="Micro"></Entry>
-                        </DataTemplate>
-                    </z:Column.Template>
-                </z:Column>
-                <z:Column>
-                    <z:Column.HeaderView>
-                        <Label Text="Observaciones" BackgroundColor="#f4f4f2" TextColor="#00A062" FontSize="Small" HorizontalTextAlignment="Center"></Label>
-                    </z:Column.HeaderView>
-                    <z:Column.Template>
-                        <DataTemplate>
-                            <Picker>
-                                <Picker.Items>
-                                    <x:String>Se perdió</x:String>
-                                </Picker.Items>
-                            </Picker>
-                        </DataTemplate>
-                    </z:Column.Template>
-                </z:Column>
-                <z:Column>
-                    <z:Column.HeaderView>
-                        <Label Text="Guardar" BackgroundColor="#f4f4f2" TextColor="#00A062" FontSize="Small" HorizontalTextAlignment="Center"></Label>
-                    </z:Column.HeaderView>
-                    <z:Column.Template>
-                        <DataTemplate>
-                            <Switch Toggled="SwitchGuardar_OnChanged"></Switch>
-                        </DataTemplate>
-                    </z:Column.Template>
-                </z:Column>
-            </z:DataGrid.Columns>
-        </z:DataGrid>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <ListView x:Name="listViewHMen" 
+                      SelectedItem="{Binding SelcetedItem,Mode=TwoWay}" 
+                      ItemSelected="EvetClicked"
+              RowHeight="120" 
+              BackgroundColor="White" >
+                <ListView.ItemTemplate >
+                    <DataTemplate >
+                        <ViewCell>
+                            <view:HerramientasTemplate/>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+        </Grid>
     </ContentPage>
     <ContentPage Title="H.Mayor" Icon="hmayor.png"
                  bnb:BottomBarPageExtensions.TabColor="#00A062">
-        <z:DataGrid x:Name="datagridHMayor">
-            <z:DataGrid.Columns>
-                <z:Column>
-                    <z:Column.HeaderView>
-                        <Label Text="Código" BackgroundColor="#f4f4f2" TextColor="#00A062" FontSize="Small" HorizontalTextAlignment="Center"></Label>
-                    </z:Column.HeaderView>
-                    <z:Column.Template>
-                        <DataTemplate>
-                            <Label Text="{Binding CodigoHerramienta}" FontSize="Micro"></Label>
-                        </DataTemplate>
-                    </z:Column.Template>
-                </z:Column>
-                <z:Column>
-                    <z:Column.HeaderView>
-                        <Label Text="Descripción" BackgroundColor="#f4f4f2" TextColor="#00A062" FontSize="Small" HorizontalTextAlignment="Center"></Label>
-                    </z:Column.HeaderView>
-                    <z:Column.Template>
-                        <DataTemplate>
-                            <Label Text="{Binding DescripcionHerramienta}" FontSize="Micro"></Label>
-                        </DataTemplate>
-                    </z:Column.Template>
-                </z:Column>
-                <z:Column>
-                    <z:Column.HeaderView>
-                        <Label Text="Unidad" BackgroundColor="#f4f4f2" TextColor="#00A062" FontSize="Small" HorizontalTextAlignment="Center"></Label>
-                    </z:Column.HeaderView>
-                    <z:Column.Template>
-                        <DataTemplate>
-                            <Label Text="{Binding UnidadHerramienta}" FontSize="Micro"></Label>
-                        </DataTemplate>
-                    </z:Column.Template>
-                </z:Column>
-                <z:Column>
-                    <z:Column.HeaderView>
-                        <Label Text="Cantidad" BackgroundColor="#f4f4f2" TextColor="#00A062" FontSize="Small" HorizontalTextAlignment="Center"></Label>
-                    </z:Column.HeaderView>
-                    <z:Column.Template>
-                        <DataTemplate>
-                            <Label Text="{Binding CantidadHerramienta}" FontSize="Micro"></Label>
-                        </DataTemplate>
-                    </z:Column.Template>
-                </z:Column>
-                <z:Column>
-                    <z:Column.HeaderView>
-                        <Label Text="Mal estado" BackgroundColor="#f4f4f2" TextColor="#00A062" FontSize="Small" HorizontalTextAlignment="Center"></Label>
-                    </z:Column.HeaderView>
-                    <z:Column.Template>
-                        <DataTemplate>
-                            <Entry Text="{Binding MalEstadoHerramienta}" FontSize="Micro"></Entry>
-                        </DataTemplate>
-                    </z:Column.Template>
-                </z:Column>
-                <z:Column>
-                    <z:Column.HeaderView>
-                        <Label Text="Observaciones" BackgroundColor="#f4f4f2" TextColor="#00A062" FontSize="Small" HorizontalTextAlignment="Center"></Label>
-                    </z:Column.HeaderView>
-                    <z:Column.Template>
-                        <DataTemplate>
-                            <Picker>
-                                <Picker.Items>
-                                    <x:String>Se rompió</x:String>
-                                    <x:String>Mantenimiento</x:String>
-                                </Picker.Items>
-                            </Picker>
-                            <!--<Label Text="{Binding ObservacionesHerramienta}" FontSize="Micro"></Label>-->
-                        </DataTemplate>
-                    </z:Column.Template>
-                </z:Column>
-                <z:Column>
-                    <z:Column.HeaderView>
-                        <Label Text="Faltante" BackgroundColor="#f4f4f2" TextColor="#00A062" FontSize="Small" HorizontalTextAlignment="Center"></Label>
-                    </z:Column.HeaderView>
-                    <z:Column.Template>
-                        <DataTemplate>
-                            <Entry Text="{Binding FaltanteHerramienta}" FontSize="Micro"></Entry>
-                        </DataTemplate>
-                    </z:Column.Template>
-                </z:Column>
-                <z:Column>
-                    <z:Column.HeaderView>
-                        <Label Text="Observaciones" BackgroundColor="#f4f4f2" TextColor="#00A062" FontSize="Small" HorizontalTextAlignment="Center"></Label>
-                    </z:Column.HeaderView>
-                    <z:Column.Template>
-                        <DataTemplate>
-                            <Picker>
-                                <Picker.Items>
-                                    <x:String>Se perdió</x:String>
-                                </Picker.Items>
-                            </Picker>
-                        </DataTemplate>
-                    </z:Column.Template>
-                </z:Column>
-                <z:Column>
-                    <z:Column.HeaderView>
-                        <Label Text="Guardar" BackgroundColor="#f4f4f2" TextColor="#00A062" FontSize="Small" HorizontalTextAlignment="Center"></Label>
-                    </z:Column.HeaderView>
-                    <z:Column.Template>
-                        <DataTemplate>
-                            <Switch Toggled="SwitchGuardar_OnChanged"></Switch>
-                        </DataTemplate>
-                    </z:Column.Template>
-                </z:Column>
-            </z:DataGrid.Columns>
-        </z:DataGrid>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <ListView x:Name="listViewHMay" 
+                      SelectedItem="{Binding SelcetedItem,Mode=TwoWay}" 
+                      ItemSelected="EvetClicked"
+              RowHeight="120" 
+              BackgroundColor="White" >
+                <ListView.ItemTemplate >
+                    <DataTemplate >
+                        <ViewCell>
+                            <view:HerramientasTemplate/>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+        </Grid>
     </ContentPage>
     <ContentPage Title="Eq.línea viva" Icon="eqlineaviva"
                  bnb:BottomBarPageExtensions.TabColor="#00A062">
-        <z:DataGrid x:Name="datagridLineaviva">
-            <z:DataGrid.Columns>
-                <z:Column>
-                    <z:Column.HeaderView>
-                        <Label Text="Código" BackgroundColor="#f4f4f2" TextColor="#00A062" FontSize="Small" HorizontalTextAlignment="Center"></Label>
-                    </z:Column.HeaderView>
-                    <z:Column.Template>
-                        <DataTemplate>
-                            <Label Text="{Binding CodigoHerramienta}" FontSize="Micro"></Label>
-                        </DataTemplate>
-                    </z:Column.Template>
-                </z:Column>
-                <z:Column>
-                    <z:Column.HeaderView>
-                        <Label Text="Descripción" BackgroundColor="#f4f4f2" TextColor="#00A062" FontSize="Small" HorizontalTextAlignment="Center"></Label>
-                    </z:Column.HeaderView>
-                    <z:Column.Template>
-                        <DataTemplate>
-                            <Label Text="{Binding DescripcionHerramienta}" FontSize="Micro"></Label>
-                        </DataTemplate>
-                    </z:Column.Template>
-                </z:Column>
-                <z:Column>
-                    <z:Column.HeaderView>
-                        <Label Text="Unidad" BackgroundColor="#f4f4f2" TextColor="#00A062" FontSize="Small" HorizontalTextAlignment="Center"></Label>
-                    </z:Column.HeaderView>
-                    <z:Column.Template>
-                        <DataTemplate>
-                            <Label Text="{Binding UnidadHerramienta}" FontSize="Micro"></Label>
-                        </DataTemplate>
-                    </z:Column.Template>
-                </z:Column>
-                <z:Column>
-                    <z:Column.HeaderView>
-                        <Label Text="Cantidad" BackgroundColor="#f4f4f2" TextColor="#00A062" FontSize="Small" HorizontalTextAlignment="Center"></Label>
-                    </z:Column.HeaderView>
-                    <z:Column.Template>
-                        <DataTemplate>
-                            <Label Text="{Binding CantidadHerramienta}" FontSize="Micro"></Label>
-                        </DataTemplate>
-                    </z:Column.Template>
-                </z:Column>
-                <z:Column>
-                    <z:Column.HeaderView>
-                        <Label Text="Mal estado" BackgroundColor="#f4f4f2" TextColor="#00A062" FontSize="Small" HorizontalTextAlignment="Center"></Label>
-                    </z:Column.HeaderView>
-                    <z:Column.Template>
-                        <DataTemplate>
-                            <Entry Text="{Binding MalEstadoHerramienta}" FontSize="Micro"></Entry>
-                        </DataTemplate>
-                    </z:Column.Template>
-                </z:Column>
-                <z:Column>
-                    <z:Column.HeaderView>
-                        <Label Text="Observaciones" BackgroundColor="#f4f4f2" TextColor="#00A062" FontSize="Small" HorizontalTextAlignment="Center"></Label>
-                    </z:Column.HeaderView>
-                    <z:Column.Template>
-                        <DataTemplate>
-                            <Picker>
-                                <Picker.Items>
-                                    <x:String>Se rompió</x:String>
-                                    <x:String>Mantenimiento</x:String>
-                                </Picker.Items>
-                            </Picker>
-                            <!--<Label Text="{Binding ObservacionesHerramienta}" FontSize="Micro"></Label>-->
-                        </DataTemplate>
-                    </z:Column.Template>
-                </z:Column>
-                <z:Column>
-                    <z:Column.HeaderView>
-                        <Label Text="Faltante" BackgroundColor="#f4f4f2" TextColor="#00A062" FontSize="Small" HorizontalTextAlignment="Center"></Label>
-                    </z:Column.HeaderView>
-                    <z:Column.Template>
-                        <DataTemplate>
-                            <Entry Text="{Binding FaltanteHerramienta}" FontSize="Micro"></Entry>
-                        </DataTemplate>
-                    </z:Column.Template>
-                </z:Column>
-                <z:Column>
-                    <z:Column.HeaderView>
-                        <Label Text="Observaciones" BackgroundColor="#f4f4f2" TextColor="#00A062" FontSize="Small" HorizontalTextAlignment="Center"></Label>
-                    </z:Column.HeaderView>
-                    <z:Column.Template>
-                        <DataTemplate>
-                            <Picker>
-                                <Picker.Items>
-                                    <x:String>Se perdió</x:String>
-                                </Picker.Items>
-                            </Picker>
-                        </DataTemplate>
-                    </z:Column.Template>
-                </z:Column>
-                <z:Column>
-                    <z:Column.HeaderView>
-                        <Label Text="Guardar" BackgroundColor="#f4f4f2" TextColor="#00A062" FontSize="Small" HorizontalTextAlignment="Center"></Label>
-                    </z:Column.HeaderView>
-                    <z:Column.Template>
-                        <DataTemplate>
-                            <Switch Toggled="SwitchGuardar_OnChanged"></Switch>
-                        </DataTemplate>
-                    </z:Column.Template>
-                </z:Column>
-            </z:DataGrid.Columns>
-        </z:DataGrid>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <ListView x:Name="listViewLinV" 
+                      SelectedItem="{Binding SelcetedItem,Mode=TwoWay}" 
+                      ItemSelected="EvetClicked"
+              RowHeight="120" 
+              BackgroundColor="White" >
+                <ListView.ItemTemplate >
+                    <DataTemplate >
+                        <ViewCell>
+                            <view:HerramientasTemplate/>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+        </Grid>
     </ContentPage>
     <ContentPage Title="Eq.Seg" Icon="eqseguridad"
                  bnb:BottomBarPageExtensions.TabColor="#00A062">
-        <z:DataGrid x:Name="datagridESeguimiento">
-            <z:DataGrid.Columns>
-                <z:Column>
-                    <z:Column.HeaderView>
-                        <Label Text="Código" BackgroundColor="#f4f4f2" TextColor="#00A062" FontSize="Small" HorizontalTextAlignment="Center"></Label>
-                    </z:Column.HeaderView>
-                    <z:Column.Template>
-                        <DataTemplate>
-                            <Label Text="{Binding CodigoHerramienta}" FontSize="Micro"></Label>
-                        </DataTemplate>
-                    </z:Column.Template>
-                </z:Column>
-                <z:Column>
-                    <z:Column.HeaderView>
-                        <Label Text="Descripción" BackgroundColor="#f4f4f2" TextColor="#00A062" FontSize="Small" HorizontalTextAlignment="Center"></Label>
-                    </z:Column.HeaderView>
-                    <z:Column.Template>
-                        <DataTemplate>
-                            <Label Text="{Binding DescripcionHerramienta}" FontSize="Micro"></Label>
-                        </DataTemplate>
-                    </z:Column.Template>
-                </z:Column>
-                <z:Column>
-                    <z:Column.HeaderView>
-                        <Label Text="Unidad" BackgroundColor="#f4f4f2" TextColor="#00A062" FontSize="Small" HorizontalTextAlignment="Center"></Label>
-                    </z:Column.HeaderView>
-                    <z:Column.Template>
-                        <DataTemplate>
-                            <Label Text="{Binding UnidadHerramienta}" FontSize="Micro"></Label>
-                        </DataTemplate>
-                    </z:Column.Template>
-                </z:Column>
-                <z:Column>
-                    <z:Column.HeaderView>
-                        <Label Text="Cantidad" BackgroundColor="#f4f4f2" TextColor="#00A062" FontSize="Small" HorizontalTextAlignment="Center"></Label>
-                    </z:Column.HeaderView>
-                    <z:Column.Template>
-                        <DataTemplate>
-                            <Label Text="{Binding CantidadHerramienta}" FontSize="Micro"></Label>
-                        </DataTemplate>
-                    </z:Column.Template>
-                </z:Column>
-                <z:Column>
-                    <z:Column.HeaderView>
-                        <Label Text="Mal estado" BackgroundColor="#f4f4f2" TextColor="#00A062" FontSize="Small" HorizontalTextAlignment="Center"></Label>
-                    </z:Column.HeaderView>
-                    <z:Column.Template>
-                        <DataTemplate>
-                            <Entry Text="{Binding MalEstadoHerramienta}" FontSize="Micro"></Entry>
-                        </DataTemplate>
-                    </z:Column.Template>
-                </z:Column>
-                <z:Column>
-                    <z:Column.HeaderView>
-                        <Label Text="Observaciones" BackgroundColor="#f4f4f2" TextColor="#00A062" FontSize="Small" HorizontalTextAlignment="Center"></Label>
-                    </z:Column.HeaderView>
-                    <z:Column.Template>
-                        <DataTemplate>
-                            <Picker>
-                                <Picker.Items>
-                                    <x:String>Se rompió</x:String>
-                                    <x:String>Mantenimiento</x:String>
-                                </Picker.Items>
-                            </Picker>
-                            <!--<Label Text="{Binding ObservacionesHerramienta}" FontSize="Micro"></Label>-->
-                        </DataTemplate>
-                    </z:Column.Template>
-                </z:Column>
-                <z:Column>
-                    <z:Column.HeaderView>
-                        <Label Text="Faltante" BackgroundColor="#f4f4f2" TextColor="#00A062" FontSize="Small" HorizontalTextAlignment="Center"></Label>
-                    </z:Column.HeaderView>
-                    <z:Column.Template>
-                        <DataTemplate>
-                            <Entry Text="{Binding FaltanteHerramienta}" FontSize="Micro"></Entry>
-                        </DataTemplate>
-                    </z:Column.Template>
-                </z:Column>
-                <z:Column>
-                    <z:Column.HeaderView>
-                        <Label Text="Observaciones" BackgroundColor="#f4f4f2" TextColor="#00A062" FontSize="Small" HorizontalTextAlignment="Center"></Label>
-                    </z:Column.HeaderView>
-                    <z:Column.Template>
-                        <DataTemplate>
-                            <Picker>
-                                <Picker.Items>
-                                    <x:String>Se perdió</x:String>
-                                </Picker.Items>
-                            </Picker>
-                        </DataTemplate>
-                    </z:Column.Template>
-                </z:Column>
-                <z:Column>
-                    <z:Column.HeaderView>
-                        <Label Text="Guardar" BackgroundColor="#f4f4f2" TextColor="#00A062" FontSize="Small" HorizontalTextAlignment="Center"></Label>
-                    </z:Column.HeaderView>
-                    <z:Column.Template>
-                        <DataTemplate>
-                            <Switch Toggled="SwitchGuardar_OnChanged"></Switch>
-                        </DataTemplate>
-                    </z:Column.Template>
-                </z:Column>
-            </z:DataGrid.Columns>
-        </z:DataGrid>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <ListView x:Name="listViewEqS" 
+                      SelectedItem="{Binding SelcetedItem,Mode=TwoWay}" 
+                      ItemSelected="EvetClicked"
+              RowHeight="120" 
+              BackgroundColor="White" >
+                <ListView.ItemTemplate >
+                    <DataTemplate >
+                        <ViewCell>
+                            <view:HerramientasTemplate/>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+        </Grid>
     </ContentPage>
 </bnb:BottomBarPage>

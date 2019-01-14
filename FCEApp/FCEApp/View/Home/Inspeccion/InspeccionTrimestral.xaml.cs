@@ -18,50 +18,26 @@ namespace FCEApp.View.Home.Inspeccion
 		public InspeccionTrimestral ()
 		{
 			InitializeComponent ();
+           
+          
         }
         protected override void OnAppearing()
         {
             base.OnAppearing();
-
-            this.CurrentPageChanged += (object sender, EventArgs e) =>
-            {
-                var i = this.Children.IndexOf(this.CurrentPage);
-                IndexClasificacion = Convert.ToInt32(i);
-            };
-
-
-            datagridHerramientas.Rows = InspeccionTrimestralViewModel.GetHerramientas();
-            datagridEPrueba.Rows = InspeccionTrimestralViewModel.GetEqHerramientas();
-            datagridHMenor.Rows = InspeccionTrimestralViewModel.GetHMenor();
-            datagridHMayor.Rows = InspeccionTrimestralViewModel.GetHMayor();
-            datagridLineaviva.Rows = InspeccionTrimestralViewModel.GetLineaViva();
-            datagridESeguimiento.Rows = InspeccionTrimestralViewModel.GetEqSeg();
-            
+            InspeccionTrimestralViewModel BindingCont = new InspeccionTrimestralViewModel();
+            listViewH.ItemsSource = BindingCont.CardDataCollection;
+            listViewEqP.ItemsSource = BindingCont.CardDataCollectionEqPrueba;
+            listViewHMen.ItemsSource = BindingCont.CardDataCollectionHmenor;
+            listViewHMay.ItemsSource = BindingCont.CardDataCollectionHmayor;
+            listViewLinV.ItemsSource = BindingCont.CardDataCollectionLineaSViva;
+            listViewEqS.ItemsSource = BindingCont.CardDataCollectionEqSeg;
         }
-
-        private void SwitchGuardar_OnChanged(object sender, ToggledEventArgs e)
+        private void EvetClicked(object s, SelectedItemChangedEventArgs e)
         {
-            //true = encendido
-            if (e.Value)
-            {
-                DisplayAlert("Mensaje", "Cambios Guardados", "ok");
-            }
+            var obj = (M_EquipoHerramienta)e.SelectedItem;
+            int ide = Convert.ToInt32(obj.Codigo);
+            DisplayAlert("ds",Convert.ToString(ide),"ds");
         }
-
-        private void Button_Clicked(object sender, EventArgs e)
-        {
-            int counter = 0;
-            var dt = datagridHerramientas.Rows.ToList();
-            var val = dt[1];
-            DisplayAlert("ds",Convert.ToString(val),"d");
-        }
-
-        //private async void Picker_Focused(object sender, FocusEventArgs e)
-        //{
-        //    var picker = sender as Picker;
-        //    var tt = picker.Title;
-        //}
-
     }
 }
 
