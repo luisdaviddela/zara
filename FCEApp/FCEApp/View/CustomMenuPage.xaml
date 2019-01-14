@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FCEApp.View.CustomMenuPage"
+             xmlns:pages="clr-namespace:FCEApp.View"
+             xmlns:viewModel="clr-namespace:FCEApp.ViewModel;assembly=FCEApp"
+             Title="CustomMenu"
+             BackgroundColor="#00A062"
+             x:Name="TheCustomMenuPage">
+    <ContentPage.Content>
+        <StackLayout
+            Padding="15">
+            <StackLayout
+                Padding="0,30">
+                <Label
+                    VerticalTextAlignment="Center"
+                    HorizontalTextAlignment="Center"
+                    TextColor="White"
+                    Text="Menú"
+                    FontSize="Large"
+                    FontAttributes="Bold"/>
+            </StackLayout>
+            <ListView
+                Footer=""
+                HasUnevenRows="true"
+                BackgroundColor="#00A062"
+                SelectedItem="{Binding SelectedCategories}"
+                ItemsSource="{Binding ListCategories}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout
+                                BackgroundColor="#00A062">
+                                <Label
+                                    Margin="35,15"
+                                    TextColor="White"
+                                    VerticalOptions="CenterAndExpand"
+                                    Text="{Binding TitleItemMenu}"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <StackLayout
+                VerticalOptions="EndAndExpand"
+                HorizontalOptions="CenterAndExpand">
+                <Label
+                    TextColor="White"
+                    FontAttributes="Bold"
+                    FontSize="Large"
+                    Text="Cerrar sesión">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Command="{Binding TapCerrarSesionCommand}"></TapGestureRecognizer>
+                    </Label.GestureRecognizers>
+                </Label>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

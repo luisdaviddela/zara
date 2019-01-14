@@ -1,0 +1,830 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<bnb:BottomBarPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:z="clr-namespace:Zumero;assembly=Zumero.DataGrid"
+             x:Class="FCEApp.View.Home.Evaluacion.EvaluacionEH"
+             xmlns:bnb="clr-namespace:BottomBar.XamarinForms;assembly=BottomBar.XamarinForms"
+             Title="Evaluación Equipo-Herramienta">
+ <ContentPage Title="Herramientas" Icon="herramienta.png"
+                 bnb:BottomBarPageExtensions.TabColor="#00A062">
+        <z:DataGrid x:Name="datagrid">
+            <z:DataGrid.Columns>
+                <z:Column>
+                    <z:Column.HeaderView>
+                        <Label Text="Código" BackgroundColor="#f4f4f2" TextColor="#00A062" FontSize="Small" HorizontalTextAlignment="Center"></Label>
+                    </z:Column.HeaderView>
+                    <z:Column.Template>
+                        <DataTemplate>
+                            <Label Text="{Binding CodigoHerramienta}" FontSize="Micro"></Label>
+                        </DataTemplate>
+                    </z:Column.Template>
+                </z:Column>
+                <z:Column>
+                    <z:Column.HeaderView>
+                        <Label Text="Descripción" BackgroundColor="#f4f4f2" TextColor="#00A062" FontSize="Small" HorizontalTextAlignment="Center"></Label>
+                    </z:Column.HeaderView>
+                    <z:Column.Template>
+                        <DataTemplate>
+                            <Label Text="{Binding DescripcionHerramienta}" FontSize="Micro"></Label>
+                        </DataTemplate>
+                    </z:Column.Template>
+                </z:Column>
+                <z:Column>
+                    <z:Column.HeaderView>
+                        <Label Text="Unidad" BackgroundColor="#f4f4f2" TextColor="#00A062" FontSize="Small" HorizontalTextAlignment="Center"></Label>
+                    </z:Column.HeaderView>
+                    <z:Column.Template>
+                        <DataTemplate>
+                            <Label Text="{Binding UnidadHerramienta}" FontSize="Micro"></Label>
+                        </DataTemplate>
+                    </z:Column.Template>
+                </z:Column>
+                <z:Column>
+                    <z:Column.HeaderView>
+                        <Label Text="Cantidad" BackgroundColor="#f4f4f2" TextColor="#00A062" FontSize="Small" HorizontalTextAlignment="Center"></Label>
+                    </z:Column.HeaderView>
+                    <z:Column.Template>
+                        <DataTemplate>
+                            <Label Text="{Binding CantidadHerramienta}" FontSize="Micro"></Label>
+                        </DataTemplate>
+                    </z:Column.Template>
+                </z:Column>
+                <z:Column>
+                    <z:Column.HeaderView>
+                        <Label Text="Mal estado" BackgroundColor="#f4f4f2" TextColor="#00A062" FontSize="Small" HorizontalTextAlignment="Center"></Label>
+                    </z:Column.HeaderView>
+                    <z:Column.Template>
+                        <DataTemplate>
+                            <Entry Text="{Binding MalEstadoHerramienta}" FontSize="Micro"></Entry>
+                        </DataTemplate>
+                    </z:Column.Template>
+                </z:Column>
+                <z:Column>
+                    <z:Column.HeaderView>
+                        <Label Text="Observaciones" BackgroundColor="#f4f4f2" TextColor="#00A062" FontSize="Small" HorizontalTextAlignment="Center"></Label>
+                    </z:Column.HeaderView>
+                    <z:Column.Template>
+                        <DataTemplate>
+                            <Picker>
+                                <Picker.Items>
+                                    <x:String>Se rompió</x:String>
+                                    <x:String>Mantenimiento</x:String>
+                                </Picker.Items>
+                            </Picker>
+                            <!--<Label Text="{Binding ObservacionesHerramienta}" FontSize="Micro"></Label>-->
+                        </DataTemplate>
+                    </z:Column.Template>
+                </z:Column>
+                <z:Column>
+                    <z:Column.HeaderView>
+                        <Label Text="Faltante" BackgroundColor="#f4f4f2" TextColor="#00A062" FontSize="Small" HorizontalTextAlignment="Center"></Label>
+                    </z:Column.HeaderView>
+                    <z:Column.Template>
+                        <DataTemplate>
+                         <Entry Text="{Binding FaltanteHerramienta}" FontSize="Micro"></Entry>
+                        </DataTemplate>
+                    </z:Column.Template>
+                </z:Column>
+                <z:Column>
+                    <z:Column.HeaderView>
+                        <Label Text="Observaciones" BackgroundColor="#f4f4f2" TextColor="#00A062" FontSize="Small" HorizontalTextAlignment="Center"></Label>
+                    </z:Column.HeaderView>
+                    <z:Column.Template>
+                        <DataTemplate>
+                            <Picker>
+                                <Picker.Items>
+                                    <x:String>Se perdió</x:String>
+                                </Picker.Items>
+                            </Picker>
+                        </DataTemplate>
+                    </z:Column.Template>
+                </z:Column>
+                <z:Column>
+                    <z:Column.HeaderView>
+                        <Label Text="Guardar" BackgroundColor="#f4f4f2" TextColor="#00A062" FontSize="Small" HorizontalTextAlignment="Center"></Label>
+                    </z:Column.HeaderView>
+                    <z:Column.Template>
+                        <DataTemplate>
+                            <Switch Toggled="SwitchGuardar_OnChanged"></Switch>
+                          </DataTemplate>
+                    </z:Column.Template>
+                </z:Column>
+            </z:DataGrid.Columns>
+        </z:DataGrid>
+
+    </ContentPage>
+    <ContentPage Title="Eq.Prueba" Icon="eqprueba.png"
+                 bnb:BottomBarPageExtensions.TabColor="#00A062">
+        <StackLayout
+                VerticalOptions="FillAndExpand"
+                HorizontalOptions="FillAndExpand"
+                Margin="5,0">
+            <ListView
+                    HasUnevenRows="true"
+                    Footer=""
+                    Header=""
+                    VerticalOptions="FillAndExpand"
+                    HorizontalOptions="FillAndExpand"
+                    SeparatorVisibility="None"
+                    ItemsSource="{Binding ListTabsCategorias}">
+                <ListView.HeaderTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <StackLayout
+                                            Grid.Column="0">
+                                    <Label
+                                                TextColor="#00A062"
+                                                Text="Código"
+                                                FontSize="Default"
+                                                VerticalTextAlignment="Center"
+                                                HorizontalTextAlignment="Center"/>
+                                </StackLayout>
+                                <StackLayout
+                                            Grid.Column="1">
+                                    <Label
+                                                TextColor="#00A062"
+                                                Text="Descripción"
+                                                FontSize="Default" 
+                                                VerticalTextAlignment="Center"
+                                                HorizontalTextAlignment="Center"/>
+                                </StackLayout>
+                                <StackLayout
+                                            Grid.Column="2">
+                                    <Label
+                                                TextColor="#00A062"
+                                                Text="Unidad"
+                                                FontSize="Default"
+                                                VerticalTextAlignment="Center"
+                                                HorizontalTextAlignment="Center"/>
+                                </StackLayout>
+                                <StackLayout
+                                            Grid.Column="3">
+                                    <Label
+                                                TextColor="#00A062"
+                                                Text="Cantidad"
+                                                FontSize="Default"
+                                                VerticalTextAlignment="Center"
+                                                HorizontalTextAlignment="Center"/>
+                                </StackLayout>
+                            </Grid>
+                        </StackLayout>
+                    </DataTemplate>
+                </ListView.HeaderTemplate>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="2*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <StackLayout
+                                            Grid.Column="0">
+                                        <Label
+                                                FontSize="Default"
+                                                TextColor="Black"
+                                                Text="{Binding Codigo}"
+                                                VerticalTextAlignment="Center"
+                                                HorizontalTextAlignment="Center"/>
+                                    </StackLayout>
+                                    <StackLayout
+                                            Grid.Column="1">
+                                        <Label
+                                                FontSize="Default"
+                                                TextColor="Black"
+                                                Text="{Binding Descripcion}"
+                                                VerticalTextAlignment="Center"
+                                                HorizontalTextAlignment="Center"/>
+                                    </StackLayout>
+                                    <StackLayout
+                                            Grid.Column="2">
+                                        <Label
+                                                FontSize="Default"
+                                                TextColor="Black"
+                                                Text="{Binding DescUnidad}"
+                                                VerticalTextAlignment="Center"
+                                                HorizontalTextAlignment="Center"/>
+                                    </StackLayout>
+                                    <StackLayout
+                                            Grid.Column="3">
+                                        <Label
+                                                FontSize="Default"
+                                                TextColor="Black"
+                                                Text="{Binding Cantidad}"
+                                                VerticalTextAlignment="Center"
+                                                HorizontalTextAlignment="Center"/>
+                                    </StackLayout>
+                                </Grid>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage>
+        <ContentPage Title="H.Menor" Icon="hmenor"
+                 bnb:BottomBarPageExtensions.TabColor="#00A062">
+        <StackLayout
+                VerticalOptions="FillAndExpand"
+                HorizontalOptions="FillAndExpand"
+                Margin="5,0">
+            <ListView
+                    HasUnevenRows="true"
+                    Footer=""
+                    Header=""
+                    VerticalOptions="FillAndExpand"
+                    HorizontalOptions="FillAndExpand"
+                    SeparatorVisibility="None"
+                    ItemsSource="{Binding ListTabsCategorias}">
+                <ListView.HeaderTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <StackLayout
+                                            Grid.Column="0">
+                                    <Label
+                                                TextColor="#00A062"
+                                                Text="Código"
+                                                FontSize="Default"
+                                                VerticalTextAlignment="Center"
+                                                HorizontalTextAlignment="Center"/>
+                                </StackLayout>
+                                <StackLayout
+                                            Grid.Column="1">
+                                    <Label
+                                                TextColor="#00A062"
+                                                Text="Descripción"
+                                                FontSize="Default" 
+                                                VerticalTextAlignment="Center"
+                                                HorizontalTextAlignment="Center"/>
+                                </StackLayout>
+                                <StackLayout
+                                            Grid.Column="2">
+                                    <Label
+                                                TextColor="#00A062"
+                                                Text="Unidad"
+                                                FontSize="Default"
+                                                VerticalTextAlignment="Center"
+                                                HorizontalTextAlignment="Center"/>
+                                </StackLayout>
+                                <StackLayout
+                                            Grid.Column="3">
+                                    <Label
+                                                TextColor="#00A062"
+                                                Text="Cantidad"
+                                                FontSize="Default"
+                                                VerticalTextAlignment="Center"
+                                                HorizontalTextAlignment="Center"/>
+                                </StackLayout>
+                            </Grid>
+                        </StackLayout>
+                    </DataTemplate>
+                </ListView.HeaderTemplate>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="2*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <StackLayout
+                                            Grid.Column="0">
+                                        <Label
+                                                FontSize="Default"
+                                                TextColor="Black"
+                                                Text="{Binding Codigo}"
+                                                VerticalTextAlignment="Center"
+                                                HorizontalTextAlignment="Center"/>
+                                    </StackLayout>
+                                    <StackLayout
+                                            Grid.Column="1">
+                                        <Label
+                                                FontSize="Default"
+                                                TextColor="Black"
+                                                Text="{Binding Descripcion}"
+                                                VerticalTextAlignment="Center"
+                                                HorizontalTextAlignment="Center"/>
+                                    </StackLayout>
+                                    <StackLayout
+                                            Grid.Column="2">
+                                        <Label
+                                                FontSize="Default"
+                                                TextColor="Black"
+                                                Text="{Binding DescUnidad}"
+                                                VerticalTextAlignment="Center"
+                                                HorizontalTextAlignment="Center"/>
+                                    </StackLayout>
+                                    <StackLayout
+                                            Grid.Column="3">
+                                        <Label
+                                                FontSize="Default"
+                                                TextColor="Black"
+                                                Text="{Binding Cantidad}"
+                                                VerticalTextAlignment="Center"
+                                                HorizontalTextAlignment="Center"/>
+                                    </StackLayout>
+                                </Grid>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage>
+            <ContentPage Title="H.Mayor" Icon="hmayor.png"
+                 bnb:BottomBarPageExtensions.TabColor="#00A062">
+        <StackLayout
+                VerticalOptions="FillAndExpand"
+                HorizontalOptions="FillAndExpand"
+                Margin="5,0">
+            <ListView
+                    HasUnevenRows="true"
+                    Footer=""
+                    Header=""
+                    VerticalOptions="FillAndExpand"
+                    HorizontalOptions="FillAndExpand"
+                    SeparatorVisibility="None"
+                    ItemsSource="{Binding ListTabsCategorias}">
+                <ListView.HeaderTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <StackLayout
+                                            Grid.Column="0">
+                                    <Label
+                                                TextColor="#00A062"
+                                                Text="Código"
+                                                FontSize="Default"
+                                                VerticalTextAlignment="Center"
+                                                HorizontalTextAlignment="Center"/>
+                                </StackLayout>
+                                <StackLayout
+                                            Grid.Column="1">
+                                    <Label
+                                                TextColor="#00A062"
+                                                Text="Descripción"
+                                                FontSize="Default" 
+                                                VerticalTextAlignment="Center"
+                                                HorizontalTextAlignment="Center"/>
+                                </StackLayout>
+                                <StackLayout
+                                            Grid.Column="2">
+                                    <Label
+                                                TextColor="#00A062"
+                                                Text="Unidad"
+                                                FontSize="Default"
+                                                VerticalTextAlignment="Center"
+                                                HorizontalTextAlignment="Center"/>
+                                </StackLayout>
+                                <StackLayout
+                                            Grid.Column="3">
+                                    <Label
+                                                TextColor="#00A062"
+                                                Text="Cantidad"
+                                                FontSize="Default"
+                                                VerticalTextAlignment="Center"
+                                                HorizontalTextAlignment="Center"/>
+                                </StackLayout>
+                            </Grid>
+                        </StackLayout>
+                    </DataTemplate>
+                </ListView.HeaderTemplate>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="2*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <StackLayout
+                                            Grid.Column="0">
+                                        <Label
+                                                FontSize="Default"
+                                                TextColor="Black"
+                                                Text="{Binding Codigo}"
+                                                VerticalTextAlignment="Center"
+                                                HorizontalTextAlignment="Center"/>
+                                    </StackLayout>
+                                    <StackLayout
+                                            Grid.Column="1">
+                                        <Label
+                                                FontSize="Default"
+                                                TextColor="Black"
+                                                Text="{Binding Descripcion}"
+                                                VerticalTextAlignment="Center"
+                                                HorizontalTextAlignment="Center"/>
+                                    </StackLayout>
+                                    <StackLayout
+                                            Grid.Column="2">
+                                        <Label
+                                                FontSize="Default"
+                                                TextColor="Black"
+                                                Text="{Binding DescUnidad}"
+                                                VerticalTextAlignment="Center"
+                                                HorizontalTextAlignment="Center"/>
+                                    </StackLayout>
+                                    <StackLayout
+                                            Grid.Column="3">
+                                        <Label
+                                                FontSize="Default"
+                                                TextColor="Black"
+                                                Text="{Binding Cantidad}"
+                                                VerticalTextAlignment="Center"
+                                                HorizontalTextAlignment="Center"/>
+                                    </StackLayout>
+                                </Grid>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage>
+    <ContentPage Title="No definida" Icon="nodefinida.png"
+                 bnb:BottomBarPageExtensions.TabColor="#00A062">
+        <StackLayout
+                VerticalOptions="FillAndExpand"
+                HorizontalOptions="FillAndExpand"
+                Margin="5,0">
+            <ListView
+                    HasUnevenRows="true"
+                    Footer=""
+                    Header=""
+                    VerticalOptions="FillAndExpand"
+                    HorizontalOptions="FillAndExpand"
+                    SeparatorVisibility="None"
+                    ItemsSource="{Binding ListTabsCategorias}">
+                <ListView.HeaderTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <StackLayout
+                                            Grid.Column="0">
+                                    <Label
+                                                TextColor="#00A062"
+                                                Text="Código"
+                                                FontSize="Default"
+                                                VerticalTextAlignment="Center"
+                                                HorizontalTextAlignment="Center"/>
+                                </StackLayout>
+                                <StackLayout
+                                            Grid.Column="1">
+                                    <Label
+                                                TextColor="#00A062"
+                                                Text="Descripción"
+                                                FontSize="Default" 
+                                                VerticalTextAlignment="Center"
+                                                HorizontalTextAlignment="Center"/>
+                                </StackLayout>
+                                <StackLayout
+                                            Grid.Column="2">
+                                    <Label
+                                                TextColor="#00A062"
+                                                Text="Unidad"
+                                                FontSize="Default"
+                                                VerticalTextAlignment="Center"
+                                                HorizontalTextAlignment="Center"/>
+                                </StackLayout>
+                                <StackLayout
+                                            Grid.Column="3">
+                                    <Label
+                                                TextColor="#00A062"
+                                                Text="Cantidad"
+                                                FontSize="Default"
+                                                VerticalTextAlignment="Center"
+                                                HorizontalTextAlignment="Center"/>
+                                </StackLayout>
+                            </Grid>
+                        </StackLayout>
+                    </DataTemplate>
+                </ListView.HeaderTemplate>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="2*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <StackLayout
+                                            Grid.Column="0">
+                                        <Label
+                                                FontSize="Default"
+                                                TextColor="Black"
+                                                Text="{Binding Codigo}"
+                                                VerticalTextAlignment="Center"
+                                                HorizontalTextAlignment="Center"/>
+                                    </StackLayout>
+                                    <StackLayout
+                                            Grid.Column="1">
+                                        <Label
+                                                FontSize="Default"
+                                                TextColor="Black"
+                                                Text="{Binding Descripcion}"
+                                                VerticalTextAlignment="Center"
+                                                HorizontalTextAlignment="Center"/>
+                                    </StackLayout>
+                                    <StackLayout
+                                            Grid.Column="2">
+                                        <Label
+                                                FontSize="Default"
+                                                TextColor="Black"
+                                                Text="{Binding DescUnidad}"
+                                                VerticalTextAlignment="Center"
+                                                HorizontalTextAlignment="Center"/>
+                                    </StackLayout>
+                                    <StackLayout
+                                            Grid.Column="3">
+                                        <Label
+                                                FontSize="Default"
+                                                TextColor="Black"
+                                                Text="{Binding Cantidad}"
+                                                VerticalTextAlignment="Center"
+                                                HorizontalTextAlignment="Center"/>
+                                    </StackLayout>
+                                </Grid>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage>
+        <ContentPage Title="Eq.línea viva" Icon="eqlineaviva"
+                 bnb:BottomBarPageExtensions.TabColor="#00A062">
+        <StackLayout
+                VerticalOptions="FillAndExpand"
+                HorizontalOptions="FillAndExpand"
+                Margin="5,0">
+            <ListView
+                    HasUnevenRows="true"
+                    Footer=""
+                    Header=""
+                    VerticalOptions="FillAndExpand"
+                    HorizontalOptions="FillAndExpand"
+                    SeparatorVisibility="None"
+                    ItemsSource="{Binding ListTabsCategorias}">
+                <ListView.HeaderTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <StackLayout
+                                            Grid.Column="0">
+                                    <Label
+                                                TextColor="#00A062"
+                                                Text="Código"
+                                                FontSize="Default"
+                                                VerticalTextAlignment="Center"
+                                                HorizontalTextAlignment="Center"/>
+                                </StackLayout>
+                                <StackLayout
+                                            Grid.Column="1">
+                                    <Label
+                                                TextColor="#00A062"
+                                                Text="Descripción"
+                                                FontSize="Default" 
+                                                VerticalTextAlignment="Center"
+                                                HorizontalTextAlignment="Center"/>
+                                </StackLayout>
+                                <StackLayout
+                                            Grid.Column="2">
+                                    <Label
+                                                TextColor="#00A062"
+                                                Text="Unidad"
+                                                FontSize="Default"
+                                                VerticalTextAlignment="Center"
+                                                HorizontalTextAlignment="Center"/>
+                                </StackLayout>
+                                <StackLayout
+                                            Grid.Column="3">
+                                    <Label
+                                                TextColor="#00A062"
+                                                Text="Cantidad"
+                                                FontSize="Default"
+                                                VerticalTextAlignment="Center"
+                                                HorizontalTextAlignment="Center"/>
+                                </StackLayout>
+                            </Grid>
+                        </StackLayout>
+                    </DataTemplate>
+                </ListView.HeaderTemplate>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="2*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <StackLayout
+                                            Grid.Column="0">
+                                        <Label
+                                                FontSize="Default"
+                                                TextColor="Black"
+                                                Text="{Binding Codigo}"
+                                                VerticalTextAlignment="Center"
+                                                HorizontalTextAlignment="Center"/>
+                                    </StackLayout>
+                                    <StackLayout
+                                            Grid.Column="1">
+                                        <Label
+                                                FontSize="Default"
+                                                TextColor="Black"
+                                                Text="{Binding Descripcion}"
+                                                VerticalTextAlignment="Center"
+                                                HorizontalTextAlignment="Center"/>
+                                    </StackLayout>
+                                    <StackLayout
+                                            Grid.Column="2">
+                                        <Label
+                                                FontSize="Default"
+                                                TextColor="Black"
+                                                Text="{Binding DescUnidad}"
+                                                VerticalTextAlignment="Center"
+                                                HorizontalTextAlignment="Center"/>
+                                    </StackLayout>
+                                    <StackLayout
+                                            Grid.Column="3">
+                                        <Label
+                                                FontSize="Default"
+                                                TextColor="Black"
+                                                Text="{Binding Cantidad}"
+                                                VerticalTextAlignment="Center"
+                                                HorizontalTextAlignment="Center"/>
+                                    </StackLayout>
+                                </Grid>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage>
+            <ContentPage Title="Eq.Seg" Icon="eqseguridad"
+                 bnb:BottomBarPageExtensions.TabColor="#00A062">
+        <StackLayout
+                VerticalOptions="FillAndExpand"
+                HorizontalOptions="FillAndExpand"
+                Margin="5,0">
+            <ListView
+                    HasUnevenRows="true"
+                    Footer=""
+                    Header=""
+                    VerticalOptions="FillAndExpand"
+                    HorizontalOptions="FillAndExpand"
+                    SeparatorVisibility="None"
+                    ItemsSource="{Binding ListTabsCategorias}">
+                <ListView.HeaderTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <StackLayout
+                                            Grid.Column="0">
+                                    <Label
+                                                TextColor="#00A062"
+                                                Text="Código"
+                                                FontSize="Default"
+                                                VerticalTextAlignment="Center"
+                                                HorizontalTextAlignment="Center"/>
+                                </StackLayout>
+                                <StackLayout
+                                            Grid.Column="1">
+                                    <Label
+                                                TextColor="#00A062"
+                                                Text="Descripción"
+                                                FontSize="Default" 
+                                                VerticalTextAlignment="Center"
+                                                HorizontalTextAlignment="Center"/>
+                                </StackLayout>
+                                <StackLayout
+                                            Grid.Column="2">
+                                    <Label
+                                                TextColor="#00A062"
+                                                Text="Unidad"
+                                                FontSize="Default"
+                                                VerticalTextAlignment="Center"
+                                                HorizontalTextAlignment="Center"/>
+                                </StackLayout>
+                                <StackLayout
+                                            Grid.Column="3">
+                                    <Label
+                                                TextColor="#00A062"
+                                                Text="Cantidad"
+                                                FontSize="Default"
+                                                VerticalTextAlignment="Center"
+                                                HorizontalTextAlignment="Center"/>
+                                </StackLayout>
+                            </Grid>
+                        </StackLayout>
+                    </DataTemplate>
+                </ListView.HeaderTemplate>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="2*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <StackLayout
+                                            Grid.Column="0">
+                                        <Label
+                                                FontSize="Default"
+                                                TextColor="Black"
+                                                Text="{Binding Codigo}"
+                                                VerticalTextAlignment="Center"
+                                                HorizontalTextAlignment="Center"/>
+                                    </StackLayout>
+                                    <StackLayout
+                                            Grid.Column="1">
+                                        <Label
+                                                FontSize="Default"
+                                                TextColor="Black"
+                                                Text="{Binding Descripcion}"
+                                                VerticalTextAlignment="Center"
+                                                HorizontalTextAlignment="Center"/>
+                                    </StackLayout>
+                                    <StackLayout
+                                            Grid.Column="2">
+                                        <Label
+                                                FontSize="Default"
+                                                TextColor="Black"
+                                                Text="{Binding DescUnidad}"
+                                                VerticalTextAlignment="Center"
+                                                HorizontalTextAlignment="Center"/>
+                                    </StackLayout>
+                                    <StackLayout
+                                            Grid.Column="3">
+                                        <Label
+                                                FontSize="Default"
+                                                TextColor="Black"
+                                                Text="{Binding Cantidad}"
+                                                VerticalTextAlignment="Center"
+                                                HorizontalTextAlignment="Center"/>
+                                    </StackLayout>
+                                </Grid>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage>
+</bnb:BottomBarPage>
