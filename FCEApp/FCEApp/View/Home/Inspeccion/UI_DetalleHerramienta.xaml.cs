@@ -27,6 +27,10 @@ namespace FCEApp
             Codigolbl.Text = cod;
             NombreEH.Text = Equip;
             Cantidalbl.Text = cantidadEx;
+            GUsuID = UsuarioID;
+
+            GInvent = InventarioID;
+            GinventaEst = MInventarioEstadoID;
         }
         public async void InformacionCuadrilla()
         {
@@ -55,36 +59,12 @@ namespace FCEApp
             }
             GuardarInfo.IsEnabled = true;
         }
-        private void pickerObs_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            var pic = sender as Picker;
-            if (Application.Current.Properties.ContainsKey("IdObservacionSess"))
-            {
-                Application.Current.Properties.Remove("IdObservacionSess");
-            }
-            var observacion = pic.SelectedItem;
-            try
-            {
-                string IdOservacionSelectedLinq = (from pair in Observ
-                                                   where pair.Descripcion == observacion.ToString()
-                                                   select pair.ObservacionId).First();
-
-                Application.Current.Properties["IdObservacionSess"] = IdOservacionSelectedLinq;
-            }
-            catch (Exception)
-            {
-                if (Application.Current.Properties.ContainsKey("IdObservacionSess"))
-                {
-                    Application.Current.Properties.Remove("IdObservacionSess");
-                }
-            }
-        }
         private void pickerObsOne_SelectedIndexChanged(object sender, EventArgs e)
         {
             var pic = sender as Picker;
-            if (Application.Current.Properties.ContainsKey("IdObservacionSess"))
+            if (Application.Current.Properties.ContainsKey("IdObM"))
             {
-                Application.Current.Properties.Remove("IdObservacionSess");
+                Application.Current.Properties.Remove("IdObM");
             }
             var observacion = pic.SelectedItem;
             try
@@ -93,19 +73,55 @@ namespace FCEApp
                                                    where pair.Descripcion == observacion.ToString()
                                                    select pair.ObservacionId).First();
 
-                Application.Current.Properties["IdObservacionSess"] = IdOservacionSelectedLinq;
+                Application.Current.Properties["IdObM"] = IdOservacionSelectedLinq;
             }
             catch (Exception)
             {
-                if (Application.Current.Properties.ContainsKey("IdObservacionSess"))
+                if (Application.Current.Properties.ContainsKey("IdObM"))
                 {
-                    Application.Current.Properties.Remove("IdObservacionSess");
+                    Application.Current.Properties.Remove("IdObM");
+                }
+            }
+        }
+        private void pickerObs_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var pic = sender as Picker;
+            if (Application.Current.Properties.ContainsKey("IdObF"))
+            {
+                Application.Current.Properties.Remove("IdObF");
+            }
+            var observacion = pic.SelectedItem;
+            try
+            {
+                string IdOservacionSelectedLinq = (from pair in Observ
+                                                   where pair.Descripcion == observacion.ToString()
+                                                   select pair.ObservacionId).First();
+
+                Application.Current.Properties["IdObF"] = IdOservacionSelectedLinq;
+            }
+            catch (Exception)
+            {
+                if (Application.Current.Properties.ContainsKey("IdObF"))
+                {
+                    Application.Current.Properties.Remove("IdObF");
                 }
             }
         }
         private async void GuardarInfo_Clicked(object sender, EventArgs e)
         {
-            var answer = await DisplayAlert("Información guardada correctamente", "Desea añadir observaciones adicionales", "Si, añadir", "No, regresar");
+            string cm = EntryMale.Text;
+            string cb = "0";
+            string cf = EntryFaltante.Text;
+            string observacionidM = Convert.ToString(Application.Current.Properties["IdObM"]);
+            string observacionidF = Convert.ToString(Application.Current.Properties["IdObF"]);
+            string numfo = "vacio";
+            string respon = "TRIMESTRAL";
+            string uriservice = RestService.Authority + Methods.Inspeccion + "UserID=" + GUsuID + "&InventarioID=" + GInvent + "&MInventarioEstadoID=" + GinventaEst + "&ObservacionIDM=" + observacionidM+ "&ObservacionIDF=" +observacionidF + "&cantidadB=" + cb + "&cantidadM=" + cm + "&cantidadF=" + cf + "&Responsable=" + respon + "&NumeroFolio=" + numfo;
+            var resposeString = await client.GetStringAsync(uriservice);
+            string resp = Convert.ToString(resposeString);
+            var obj = JsonConvert.DeserializeObject<object>(resp);
+            string data = Convert.ToString(obj);
+            var answer = await DisplayAlert(data, "Desea añadir observaciones adicionales", "Si, añadir", "No, regresar");
             if (answer)
             {
                 await Navigation.PushAsync(new UI_ObservacionesAdicionales());

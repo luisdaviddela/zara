@@ -43,7 +43,7 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Label Text="Mal Estado (M)" FontSize="Medium"  Grid.Column="0" Grid.Row="0" TextColor="Black"/>
-                <Entry Grid.Column="1" Grid.Row="0" Keyboard="Numeric"/>
+                <Entry Grid.Column="1" Grid.Row="0" Keyboard="Numeric" x:Name="EntryMale"/>
             </Grid>
             <!--picker observaciones-->
             <Label Text="Observaciones" FontSize="Medium" FontAttributes="Bold" TextColor=" #196f3d"/>
@@ -84,7 +84,7 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Label Text="Faltante (F)" FontSize="Medium" Grid.Column="0" Grid.Row="0" TextColor="Black"/>
-                <Entry Grid.Column="1" Grid.Row="0" Keyboard="Numeric"/>
+                <Entry x:Name="EntryFaltante" Grid.Column="1" Grid.Row="0" Keyboard="Numeric"/>
             </Grid>
             <!--picker observaciones-->
             <Label Text="Observaciones" FontSize="Medium" FontAttributes="Bold" TextColor=" #196f3d"/>
