@@ -23,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="UI_ObservacionesAdicionales.xaml">
+    <EmbeddedResource Update="View\Home\Inspeccion\UI_ObservacionesAdicionales.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="View\Home\Inspeccion\UI_DetalleHerramienta.xaml">
