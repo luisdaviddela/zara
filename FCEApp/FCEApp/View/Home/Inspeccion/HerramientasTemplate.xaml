@@ -63,17 +63,17 @@
                         <Label Text="{Binding DescUnidad}" Grid.Row="0"
                            Grid.Column="0"/>
 
-                        <!--<Image Grid.Row="1" 
+                        <Image Grid.Row="1" 
                            Grid.Column="0"
                            HeightRequest="15"
-                           Source="{Binding CardIcon}"/>-->
-                        <Label Grid.Row="1" 
+                           Source="tools.png"/>
+                        <!--<Label Grid.Row="1" 
                            Grid.Column="0"
                            HeightRequest="15"
                            Text="Cantidad"/>
                         <Label Grid.Row="1"
                            Grid.Column="1"
-                           Text="{Binding Cantidad, Mode = TwoWay}"/>
+                           Text="{Binding Cantidad, Mode = TwoWay}"/>-->
                     </Grid>
                 </Grid>
             </Grid>

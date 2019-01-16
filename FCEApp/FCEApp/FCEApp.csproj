@@ -23,7 +23,16 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="HerramientasTemplate.xaml">
+    <EmbeddedResource Update="UI_ObservacionesAdicionales.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="View\Home\Inspeccion\UI_DetalleHerramienta.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="View\Home\Inspeccion\PopUpGuardarInfo.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="View\Home\Inspeccion\HerramientasTemplate.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="TabbedPageExample.xaml">

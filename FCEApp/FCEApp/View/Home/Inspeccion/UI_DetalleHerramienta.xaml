@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FCEApp.UI_DetalleHerramienta">
+    <ContentPage.Content>
+        <StackLayout>
+            <!--titulo-->
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Label x:Name="Codigolbl" FontSize="Medium" FontAttributes="Bold" Grid.Column="0" TextColor=" #196f3d"/>
+                <Label Text="-" FontSize="Medium" FontAttributes="Bold" Grid.Column="1" TextColor=" #196f3d"/>
+                <Label x:Name="NombreEH" FontSize="Medium" FontAttributes="Bold" Grid.Column="2" TextColor=" #196f3d"/>
+            </Grid>
+            <!--cantidad-->
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Label Text="Cantidad" FontSize="Medium" FontAttributes="Bold" Grid.Column="0" TextColor=" #196f3d"/>
+                <Label x:Name="Cantidalbl" FontSize="Medium" FontAttributes="Bold" Grid.Column="1" TextColor="Black"/>
+              
+            </Grid>
+            <Label Text="Estado" FontSize="Medium" FontAttributes="Bold" TextColor=" #196f3d"/>
+            <!--estado-->
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Label Text="Mal Estado (M)" FontSize="Medium"  Grid.Column="0" Grid.Row="0" TextColor="Black"/>
+                <Entry Grid.Column="1" Grid.Row="0" Keyboard="Numeric"/>
+            </Grid>
+            <!--picker observaciones-->
+            <Label Text="Observaciones" FontSize="Medium" FontAttributes="Bold" TextColor=" #196f3d"/>
+            <Grid
+                 Grid.Row="1"
+                 HorizontalOptions="Center"
+                 WidthRequest="200">
+
+                <!--  Icon Image  -->
+                <Image
+                      Grid.Column="1"
+                      HeightRequest="25"
+                      HorizontalOptions="End"
+                      Source="Triangulo.png"
+                      VerticalOptions="Center"
+                      WidthRequest="25" />
+
+                <!--  Picker Control  -->
+                <Picker
+                      x:Name="pickerObsOne"
+                      SelectedIndexChanged="pickerObsOne_SelectedIndexChanged"
+                      Title="Observaciones"
+                      Grid.Column="0"
+                      Grid.ColumnSpan="2"
+                      BackgroundColor="Transparent">
+
+                </Picker>
+
+            </Grid>
+            <!--estado-->
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Label Text="Faltante (F)" FontSize="Medium" Grid.Column="0" Grid.Row="0" TextColor="Black"/>
+                <Entry Grid.Column="1" Grid.Row="0" Keyboard="Numeric"/>
+            </Grid>
+            <!--picker observaciones-->
+            <Label Text="Observaciones" FontSize="Medium" FontAttributes="Bold" TextColor=" #196f3d"/>
+            <Grid
+                 Grid.Row="1"
+                 HorizontalOptions="Center"
+                 WidthRequest="200">
+
+                <!--  Icon Image  -->
+                <Image
+                      Grid.Column="1"
+                      HeightRequest="25"
+                      HorizontalOptions="End"
+                      Source="Triangulo.png"
+                      VerticalOptions="Center"
+                      WidthRequest="25" />
+
+                <!--  Picker Control  -->
+                <Picker
+                      x:Name="pickerObs"
+                      SelectedIndexChanged="pickerObs_SelectedIndexChanged"
+                      Title="Observaciones"
+                      Grid.Column="0"
+                      Grid.ColumnSpan="2"
+                      BackgroundColor="Transparent">
+
+                </Picker>
+
+            </Grid>
+            <Grid
+                 Grid.Row="1"
+                 HorizontalOptions="Center"
+                 WidthRequest="200">
+
+                <Button
+                    x:Name="GuardarInfo"
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    TextColor="White"
+                    Clicked="GuardarInfo_Clicked"
+                    BackgroundColor="#0C905F"
+                    Text="Guardar"/>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

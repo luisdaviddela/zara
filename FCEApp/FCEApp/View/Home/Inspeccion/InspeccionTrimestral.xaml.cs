@@ -35,8 +35,14 @@ namespace FCEApp.View.Home.Inspeccion
         private void EvetClicked(object s, SelectedItemChangedEventArgs e)
         {
             var obj = (M_EquipoHerramienta)e.SelectedItem;
-            int ide = Convert.ToInt32(obj.Codigo);
-            DisplayAlert("ds",Convert.ToString(ide),"ds");
+            string UsuarioID = Convert.ToString(Application.Current.Properties["UsuarioId"]);
+            string InventarioID = Convert.ToString(obj.InventarioID);
+            string CantidadEx = Convert.ToString(obj.Cantidad);
+            string MInventarioEstadoID = Convert.ToString(obj.MInventarioEstadoID);
+            string Codigo = Convert.ToString(obj.Codigo);
+            string NombreH = Convert.ToString(obj.Descripcion);
+
+            App.MasterDetail.Detail.Navigation.PushAsync(new UI_DetalleHerramienta(UsuarioID, InventarioID, MInventarioEstadoID, CantidadEx, Codigo, NombreH));
         }
     }
 }

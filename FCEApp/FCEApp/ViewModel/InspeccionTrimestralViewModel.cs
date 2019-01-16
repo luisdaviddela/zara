@@ -56,7 +56,6 @@ namespace FCEApp.ViewModel
             GenerateCardModelLineasVivsa();
             GenerateCardModelEqSeg();
         }
-
         public void GenerateCardModel()
         {
             List<M_EquipoHerramienta> equipoherramienta = new List<M_EquipoHerramienta>();
@@ -88,7 +87,9 @@ namespace FCEApp.ViewModel
                             Descripcion,
                             DescUnidad = $"Unidad: {item.DescUnidad}",
                             Cantidad = item.
-                            Cantidad
+                            Cantidad,
+                            MInventarioEstadoID = item.MInventarioEstadoID,
+                            InventarioID = item.InventarioID
                         };
                         CardDataCollection.Add(cardDataAprobaciones);
                     }
@@ -132,7 +133,9 @@ namespace FCEApp.ViewModel
                             Descripcion,
                             DescUnidad = $"Unidad: {item.DescUnidad}",
                             Cantidad = item.
-                            Cantidad
+                            Cantidad,
+                            MInventarioEstadoID = item.MInventarioEstadoID,
+                            InventarioID = item.InventarioID
                         };
                         CardDataCollectionEqPrueba.Add(cardDataAprobaciones);
                     }
@@ -176,7 +179,9 @@ namespace FCEApp.ViewModel
                             Descripcion,
                             DescUnidad = $"Unidad: {item.DescUnidad}",
                             Cantidad = item.
-                            Cantidad
+                            Cantidad,
+                            MInventarioEstadoID = item.MInventarioEstadoID,
+                            InventarioID = item.InventarioID
                         };
                         CardDataCollectionHmenor.Add(cardDataAprobaciones);
                     }
@@ -220,7 +225,9 @@ namespace FCEApp.ViewModel
                             Descripcion,
                             DescUnidad = $"Unidad: {item.DescUnidad}",
                             Cantidad = item.
-                            Cantidad
+                            Cantidad,
+                            MInventarioEstadoID = item.MInventarioEstadoID,
+                            InventarioID = item.InventarioID
                         };
                         CardDataCollectionHmayor.Add(cardDataAprobaciones);
                     }
@@ -264,7 +271,9 @@ namespace FCEApp.ViewModel
                             Descripcion,
                             DescUnidad = $"Unidad: {item.DescUnidad}",
                             Cantidad = item.
-                            Cantidad
+                            Cantidad,
+                            MInventarioEstadoID = item.MInventarioEstadoID,
+                            InventarioID = item.InventarioID
                         };
                         CardDataCollectionLineaSViva.Add(cardDataAprobaciones);
                     }
@@ -308,7 +317,9 @@ namespace FCEApp.ViewModel
                             Descripcion,
                             DescUnidad = $"Unidad: {item.DescUnidad}",
                             Cantidad = item.
-                            Cantidad
+                            Cantidad,
+                            MInventarioEstadoID = item.MInventarioEstadoID,
+                            InventarioID = item.InventarioID
                         };
                         CardDataCollectionEqSeg.Add(cardDataAprobaciones);
                     }

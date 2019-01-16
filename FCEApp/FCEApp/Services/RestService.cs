@@ -21,5 +21,7 @@ namespace FCEApp
         public static string Login = "api/sesion/?";
         public static string Cuadrillaszona = "api/Cuadrillaszona/?";
         public static string Inventariotrimestral = "api/Inventariotrimestral/?";
+        public static string Observaciones = "api/Observaciones/";
+        public static string Inspeccion = "api/Inspeccion/?";
     }
 }
