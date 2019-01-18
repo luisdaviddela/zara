@@ -23,19 +23,34 @@ namespace FCEApp
 		{
 			InitializeComponent ();
             InformacionCuadrilla();
+            InformacionCuadrillaF();
             Title = "Detalle";
             Codigolbl.Text = cod;
             NombreEH.Text = Equip;
             Cantidalbl.Text = cantidadEx;
             GUsuID = UsuarioID;
-
             GInvent = InventarioID;
             GinventaEst = MInventarioEstadoID;
+            //----------------------------------
+            if (cantidadEx == "0")
+            {
+                LblMensajeErr.IsVisible = true;
+                EntryMale.IsEnabled = false;
+                EntryFaltante.IsEnabled = false;
+                pickerObs.IsEnabled = false;
+                pickerObsOne.IsEnabled = false;
+                GuardarInfo.IsEnabled = false;
+            }
+            else
+            {
+                LblMensajeErr.IsVisible = false;
+            }
+
         }
         public async void InformacionCuadrilla()
         {
 
-            string URLservise = RestService.Authority + Methods.Observaciones;
+            string URLservise = RestService.Authority + Methods.Observaciones + "M";
             var resposeString = await client.GetStringAsync(URLservise);
             try
             {
@@ -45,12 +60,36 @@ namespace FCEApp
 
                 List<M_Observaciones> Observable = JsonConvert.DeserializeObject<List<M_Observaciones>>(data);
                 Observ = new ObservableCollection<M_Observaciones>(Observable);
+                for (int i = 0; i < Observ.Count; i++)
+                {
+                    string valueResponsableCuadrilla = Convert.ToString(Observ[i].Descripcion);
+                    pickerObsOne.Items.Add(valueResponsableCuadrilla);
+                    
+                }
+            }
+            catch (Exception ex)
+            {
+                await Application.Current.MainPage.DisplayAlert("CFE Mensaje:", ex.Message, "Ok");
+            }
+            GuardarInfo.IsEnabled = true;
+        }
+        public async void InformacionCuadrillaF()
+        {
 
+            string URLservise = RestService.Authority + Methods.Observaciones + "F";
+            var resposeString = await client.GetStringAsync(URLservise);
+            try
+            {
+                string resp = Convert.ToString(resposeString);
+                var obj = JsonConvert.DeserializeObject<object>(resp);
+                string data = Convert.ToString(obj);
+
+                List<M_Observaciones> Observable = JsonConvert.DeserializeObject<List<M_Observaciones>>(data);
+                Observ = new ObservableCollection<M_Observaciones>(Observable);
                 for (int i = 0; i < Observ.Count; i++)
                 {
                     string valueResponsableCuadrilla = Convert.ToString(Observ[i].Descripcion);
                     pickerObs.Items.Add(valueResponsableCuadrilla);
-                    pickerObsOne.Items.Add(valueResponsableCuadrilla);
                 }
             }
             catch (Exception ex)

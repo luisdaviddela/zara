@@ -6,7 +6,7 @@ namespace FCEApp
 {
     public static class RestService
     {
-        public static string Authority = "http://192.168.137.1/";
+        public static string Authority = "http://192.168.2.169/";
     }
     public static class HttpMethods
     {
@@ -21,7 +21,7 @@ namespace FCEApp
         public static string Login = "api/sesion/?";
         public static string Cuadrillaszona = "api/Cuadrillaszona/?";
         public static string Inventariotrimestral = "api/Inventariotrimestral/?";
-        public static string Observaciones = "api/Observaciones/";
+        public static string Observaciones = "api/Observaciones/?Clave=";
         public static string Inspeccion = "api/Inspeccion/?";
     }
 }

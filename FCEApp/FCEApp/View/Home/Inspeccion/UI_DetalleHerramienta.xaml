@@ -31,6 +31,7 @@
                 <Label x:Name="Cantidalbl" FontSize="Medium" FontAttributes="Bold" Grid.Column="1" TextColor="Black"/>
               
             </Grid>
+            <Label Text="No se puede evaluar porque no hay en existencia" FontAttributes="Italic" TextColor="Red" FontSize="Small" x:Name="LblMensajeErr"/>
             <Label Text="Estado" FontSize="Medium" FontAttributes="Bold" TextColor=" #196f3d"/>
             <!--estado-->
             <Grid>
