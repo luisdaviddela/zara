@@ -87,6 +87,8 @@ namespace FCEApp.View.Home.Inspeccion
             string pickYear = Convert.ToString(PickerAnio.SelectedItem);
             string pickTrim = Convert.ToString(pickTrimestre.SelectedItem);
 
+            Application.Current.Properties["Anio"] = PickerAnio.SelectedItem;
+            Application.Current.Properties["Trimestre"] = pickTrimestre.SelectedItem;
             if (PickNames!= "" && pickYear != "" && pickTrim != "")
             {
                 await App.Current.MainPage.Navigation.PopAllPopupAsync(true);

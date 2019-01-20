@@ -27,6 +27,7 @@
                     Grid.Column="0"
                     Grid.ColumnSpan="2"
                     TextColor="White"
+                    Clicked="FinalizarBtn_Clicked"
                     BackgroundColor="#0C905F"
                     Text="Finalizar"/>
             </Grid>

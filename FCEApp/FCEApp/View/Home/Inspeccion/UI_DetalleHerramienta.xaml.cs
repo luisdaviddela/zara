@@ -16,9 +16,11 @@ namespace FCEApp
 	public partial class UI_DetalleHerramienta : ContentPage
 	{
         private static readonly HttpClient client = new HttpClient();
-        List<M_Observaciones> info = new List<M_Observaciones>();
+        List<M_Observaciones> infoMala = new List<M_Observaciones>();
+        List<M_Observaciones> infoFaltante = new List<M_Observaciones>();
+        public ObservableCollection<M_Observaciones> ObservMala;
+        public ObservableCollection<M_Observaciones> ObservFaltante;
         string GUsuID = "", GInvent = "", GinventaEst = "";
-        public ObservableCollection<M_Observaciones> Observ;
         public UI_DetalleHerramienta (string UsuarioID, string InventarioID, string MInventarioEstadoID, string cantidadEx, string cod, string Equip)
 		{
 			InitializeComponent ();
@@ -40,12 +42,12 @@ namespace FCEApp
                 pickerObs.IsEnabled = false;
                 pickerObsOne.IsEnabled = false;
                 GuardarInfo.IsEnabled = false;
+                GuardarInfo.IsVisible = false;
             }
             else
             {
                 LblMensajeErr.IsVisible = false;
             }
-
         }
         public async void InformacionCuadrilla()
         {
@@ -59,12 +61,11 @@ namespace FCEApp
                 string data = Convert.ToString(obj);
 
                 List<M_Observaciones> Observable = JsonConvert.DeserializeObject<List<M_Observaciones>>(data);
-                Observ = new ObservableCollection<M_Observaciones>(Observable);
-                for (int i = 0; i < Observ.Count; i++)
+                ObservMala = new ObservableCollection<M_Observaciones>(Observable);
+                for (int i = 0; i < ObservMala.Count; i++)
                 {
-                    string valueResponsableCuadrilla = Convert.ToString(Observ[i].Descripcion);
+                    string valueResponsableCuadrilla = Convert.ToString(ObservMala[i].Descripcion);
                     pickerObsOne.Items.Add(valueResponsableCuadrilla);
-                    
                 }
             }
             catch (Exception ex)
@@ -85,10 +86,10 @@ namespace FCEApp
                 string data = Convert.ToString(obj);
 
                 List<M_Observaciones> Observable = JsonConvert.DeserializeObject<List<M_Observaciones>>(data);
-                Observ = new ObservableCollection<M_Observaciones>(Observable);
-                for (int i = 0; i < Observ.Count; i++)
+                ObservFaltante = new ObservableCollection<M_Observaciones>(Observable);
+                for (int i = 0; i < ObservFaltante.Count; i++)
                 {
-                    string valueResponsableCuadrilla = Convert.ToString(Observ[i].Descripcion);
+                    string valueResponsableCuadrilla = Convert.ToString(ObservFaltante[i].Descripcion);
                     pickerObs.Items.Add(valueResponsableCuadrilla);
                 }
             }
@@ -108,14 +109,15 @@ namespace FCEApp
             var observacion = pic.SelectedItem;
             try
             {
-                string IdOservacionSelectedLinq = (from pair in Observ
+                string IdOservacionSelectedLinq = (from pair in ObservMala
                                                    where pair.Descripcion == observacion.ToString()
                                                    select pair.ObservacionId).First();
 
                 Application.Current.Properties["IdObM"] = IdOservacionSelectedLinq;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                DisplayAlert("s",ex.Message,"d");
                 if (Application.Current.Properties.ContainsKey("IdObM"))
                 {
                     Application.Current.Properties.Remove("IdObM");
@@ -132,7 +134,7 @@ namespace FCEApp
             var observacion = pic.SelectedItem;
             try
             {
-                string IdOservacionSelectedLinq = (from pair in Observ
+                string IdOservacionSelectedLinq = (from pair in ObservFaltante
                                                    where pair.Descripcion == observacion.ToString()
                                                    select pair.ObservacionId).First();
 
@@ -156,15 +158,23 @@ namespace FCEApp
             string numfo = "vacio";
             string respon = "TRIMESTRAL";
             string uriservice = RestService.Authority + Methods.Inspeccion + "UserID=" + GUsuID + "&InventarioID=" + GInvent + "&MInventarioEstadoID=" + GinventaEst + "&ObservacionIDM=" + observacionidM+ "&ObservacionIDF=" +observacionidF + "&cantidadB=" + cb + "&cantidadM=" + cm + "&cantidadF=" + cf + "&Responsable=" + respon + "&NumeroFolio=" + numfo;
-            var resposeString = await client.GetStringAsync(uriservice);
-            string resp = Convert.ToString(resposeString);
-            var obj = JsonConvert.DeserializeObject<object>(resp);
-            string data = Convert.ToString(obj);
-            var answer = await DisplayAlert(data, "Desea añadir observaciones adicionales", "Si, añadir", "No, regresar");
-            if (answer)
+            try
             {
-                await Navigation.PushAsync(new UI_ObservacionesAdicionales());
+                var resposeString = await client.GetStringAsync(uriservice);
+                string resp = Convert.ToString(resposeString);
+                var obj = JsonConvert.DeserializeObject<object>(resp);
+                string data = Convert.ToString(obj);
+                var answer = await DisplayAlert(data, "Desea añadir observaciones adicionales", "Si, añadir", "No, regresar");
+                if (answer)
+                {
+                    await Navigation.PushAsync(new UI_ObservacionesAdicionales());
+                }
             }
+            catch (Exception ex)
+            {
+                await DisplayAlert("CFE Mensaje",ex.Message,"Ok");
+            }
+            
         }
     }
 }
