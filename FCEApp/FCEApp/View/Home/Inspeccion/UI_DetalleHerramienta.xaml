@@ -37,6 +37,7 @@
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
@@ -44,7 +45,8 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Label Text="Mal Estado (M)" FontSize="Medium"  Grid.Column="0" Grid.Row="0" TextColor="Black"/>
-                <Entry Grid.Column="1" Grid.Row="0" Keyboard="Numeric" x:Name="EntryMale"/>
+                <Label Grid.Column="1" Grid.Row="0" x:Name="LblMalEstado" HorizontalTextAlignment="Center"/>
+                <Stepper Grid.Column="2" Grid.Row="0" Minimum="1" x:Name="EntryMalEstado" ValueChanged="EntryMalEstado_ValueChanged"/>
             </Grid>
             <!--picker observaciones-->
             <Label Text="Observaciones" FontSize="Medium" FontAttributes="Bold" TextColor=" #196f3d"/>
@@ -52,7 +54,6 @@
                  Grid.Row="1"
                  HorizontalOptions="Center"
                  WidthRequest="200">
-
                 <!--  Icon Image  -->
                 <Image
                       Grid.Column="1"
@@ -78,6 +79,7 @@
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
@@ -85,7 +87,8 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Label Text="Faltante (F)" FontSize="Medium" Grid.Column="0" Grid.Row="0" TextColor="Black"/>
-                <Entry x:Name="EntryFaltante" Grid.Column="1" Grid.Row="0" Keyboard="Numeric"/>
+                <Label x:Name="LblFaltante" Grid.Column="1" Grid.Row="0" HorizontalTextAlignment="Center"/>
+                <Stepper Grid.Column="2" Grid.Row="0" Minimum="1" x:Name="EntryFaltante" ValueChanged="EntryFaltante_ValueChanged"/>
             </Grid>
             <!--picker observaciones-->
             <Label Text="Observaciones" FontSize="Medium" FontAttributes="Bold" TextColor=" #196f3d"/>
