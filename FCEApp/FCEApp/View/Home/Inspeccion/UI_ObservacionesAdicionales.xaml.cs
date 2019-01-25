@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using FCEApp.View;
+using Newtonsoft.Json;
 using System;
 using System.Net.Http;
 using Xamarin.Forms;
@@ -56,7 +57,8 @@ namespace FCEApp
                 string resp = Convert.ToString(resposeString);
                 var obj = JsonConvert.DeserializeObject<object>(resp);
                 string data = Convert.ToString(obj);
-                await DisplayAlert("CFE Mensaje","Inspección finalizada", "Ok");
+                await DisplayAlert("CFE Mensaje", "Inspección finalizada", "Ok");
+                Application.Current.MainPage = new NavigationPage(new LoginPage());
             }
             catch (Exception ex)
             {
