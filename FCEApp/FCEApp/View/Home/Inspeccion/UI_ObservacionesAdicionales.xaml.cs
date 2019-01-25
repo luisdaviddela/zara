@@ -56,7 +56,7 @@ namespace FCEApp
                 string resp = Convert.ToString(resposeString);
                 var obj = JsonConvert.DeserializeObject<object>(resp);
                 string data = Convert.ToString(obj);
-                await DisplayAlert("CFE Mensaje",data, "Ok");
+                await DisplayAlert("CFE Mensaje","Inspección finalizada", "Ok");
             }
             catch (Exception ex)
             {

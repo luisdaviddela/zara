@@ -22,8 +22,8 @@ namespace FCEApp
         public ObservableCollection<M_Observaciones> ObservFaltante;
         string GUsuID = "", GInvent = "", GinventaEst = "";
         int cantidadGlobal = 0;
-        int cantidadMalEstado = 1;
-        int cantidadFaltante = 1;
+        int cantidadMalEstado = 0;
+        int cantidadFaltante = 0;
         public UI_DetalleHerramienta (string UsuarioID, string InventarioID, string MInventarioEstadoID, string cantidadEx, string cod, string Equip)
 		{
 			InitializeComponent ();
@@ -38,6 +38,8 @@ namespace FCEApp
             GInvent = InventarioID;
             GinventaEst = MInventarioEstadoID;
             //----------------------------------
+            pickerObsOne.IsVisible = false;
+            pickerObs.IsVisible = false;
             if (cantidadGlobal <= 1)
             {
                 LblMensajeErr.IsVisible = true;
@@ -51,8 +53,8 @@ namespace FCEApp
             else
             {
                 LblMensajeErr.IsVisible = false;
-                LblMalEstado.Text = Convert.ToString(1);
-                LblFaltante.Text = Convert.ToString(1);
+                LblMalEstado.Text = Convert.ToString(0);
+                LblFaltante.Text = Convert.ToString(0);
             }
         }
         public async void InformacionCuadrilla()
@@ -105,6 +107,30 @@ namespace FCEApp
             }
             GuardarInfo.IsEnabled = true;
         }
+        private void EntryMalEstado_ValueChanged(object sender, ValueChangedEventArgs e)
+        {
+            var cm = EntryMalEstado.Value.ToString();
+            
+            cantidadMalEstado = Convert.ToInt32(cm);
+            int total = cantidadFaltante + cantidadMalEstado;
+            if (cantidadMalEstado==0)
+            {
+                pickerObsOne.IsVisible = false;
+            }
+            else
+            {
+                pickerObsOne.IsVisible = true;
+            }
+            //DisplayAlert("con", total.ToString(), "ok");
+            if (total > cantidadGlobal)
+            {
+                DisplayAlert("CFE Mensaje", "No puede agregar más del inventario existente", "ok");
+            }
+            else
+            {
+                LblMalEstado.Text = Convert.ToString(cm);
+            }
+        }
         private void pickerObsOne_SelectedIndexChanged(object sender, EventArgs e)
         {
             var pic = sender as Picker;
@@ -128,6 +154,29 @@ namespace FCEApp
                 {
                     Application.Current.Properties.Remove("IdObM");
                 }
+            }
+        }
+        private void EntryFaltante_ValueChanged(object sender, ValueChangedEventArgs e)
+        {
+            var cf = EntryFaltante.Value.ToString();
+            cantidadFaltante = Convert.ToInt32(cf);
+            int total = cantidadFaltante + cantidadMalEstado;
+            if (total == 0 )
+            {
+                pickerObs.IsVisible = false;
+            }
+            else
+            {
+                pickerObs.IsVisible = true;
+            }
+            //DisplayAlert("con",total.ToString(),"ok");
+            if (total> cantidadGlobal)
+            {
+                DisplayAlert("CFE Mensaje", "No puede agregar más del inventario existente", "ok");
+            }
+            else
+            {
+                LblFaltante.Text=Convert.ToString(cf);
             }
         }
         private void pickerObs_SelectedIndexChanged(object sender, EventArgs e)
@@ -154,55 +203,42 @@ namespace FCEApp
                 }
             }
         }
-        private void EntryMalEstado_ValueChanged(object sender, ValueChangedEventArgs e)
-        {
-            var cm = EntryMalEstado.Value.ToString();
-            cantidadMalEstado = Convert.ToInt32(cm);
-            int total = cantidadFaltante + cantidadMalEstado;
-            //DisplayAlert("con", total.ToString(), "ok");
-            if (total > cantidadGlobal)
-            {
-                DisplayAlert("CFE Mensaje", "No puede agregar más del inventario existente", "ok");
-            }
-            else
-            {
-                LblMalEstado.Text = Convert.ToString(cm);
-            }
-        }
-        private void EntryFaltante_ValueChanged(object sender, ValueChangedEventArgs e)
-        {
-            var cf = EntryFaltante.Value.ToString();
-            cantidadFaltante = Convert.ToInt32(cf);
-            int total = cantidadFaltante + cantidadMalEstado;
-            //DisplayAlert("con",total.ToString(),"ok");
-            if (total> cantidadGlobal)
-            {
-                DisplayAlert("CFE Mensaje", "No puede agregar más del inventario existente", "ok");
-            }
-            else
-            {
-                LblFaltante.Text=Convert.ToString(cf);
-            }
-        }
 
         private async void GuardarInfo_Clicked(object sender, EventArgs e)
         {
             string cb = "0";
-            int numerror = 0;
             string cm = Convert.ToString(LblMalEstado.Text);
             string cf = Convert.ToString(LblFaltante.Text);
-            string observacionidM = "";
-            string observacionidF = "";
-            try
+            int numerror = 0;
+            string observacionidM = "vacio";
+            string observacionidF = "vacio";
+
+            if (Convert.ToInt32(cm) > 0)
             {
-                observacionidM= Convert.ToString(Application.Current.Properties["IdObM"]);
-                observacionidF= Convert.ToString(Application.Current.Properties["IdObF"]);
+                try
+                {
+                    observacionidM = Convert.ToString(Application.Current.Properties["IdObM"]);
+                }
+                catch 
+                {
+
+                    numerror=numerror = +1;
+                }
             }
-            catch (Exception)
+            if (Convert.ToInt32(cf) > 0)
             {
-                numerror = numerror + 1;
+                try
+                {
+                    observacionidF = Convert.ToString(Application.Current.Properties["IdObF"]);
+                }
+                catch
+                {
+
+                    numerror = numerror = +1;
+                }
             }
-            if (numerror >= 1)
+
+            if (numerror>=1)
             {
                 await DisplayAlert("CFE Mensaje", "Las observaciones son necesarias", "Ok");
             }
@@ -210,14 +246,15 @@ namespace FCEApp
             {
                 string numfo = "vacio";
                 string respon = "TRIMESTRAL";
-                string uriservice = RestService.Authority + Methods.Inspeccion + "UserID=" + GUsuID + "&InventarioID=" + GInvent + "&MInventarioEstadoID=" + GinventaEst + "&ObservacionIDM=" + observacionidM+ "&ObservacionIDF=" +observacionidF + "&cantidadB=" + cb + "&cantidadM=" + cm + "&cantidadF=" + cf + "&Responsable=" + respon + "&NumeroFolio=" + numfo;
+                string uriservice = RestService.Authority + Methods.Inspeccion + "UserID=" + GUsuID + "&InventarioID=" + GInvent + "&MInventarioEstadoID=" + GinventaEst + "&ObservacionIDM=" + observacionidM + "&ObservacionIDF=" + observacionidF + "&cantidadB=" + cb + "&cantidadM=" + cm + "&cantidadF=" + cf + "&Responsable=" + respon + "&NumeroFolio=" + numfo;
                 try
                 {
+                    //await DisplayAlert("CFE Mensaje", uriservice, "Ok");
                     var resposeString = await client.GetStringAsync(uriservice);
                     string resp = Convert.ToString(resposeString);
                     var obj = JsonConvert.DeserializeObject<object>(resp);
                     string data = Convert.ToString(obj);
-                    var answer = await DisplayAlert(data, "Desea añadir observaciones adicionales", "Si, añadir", "No, regresar");
+                    var answer = await DisplayAlert("Mensaje", "Desea añadir observaciones adicionales", "Si, añadir", "No, regresar");
                     if (answer)
                     {
                         await Navigation.PushAsync(new UI_ObservacionesAdicionales());
@@ -225,10 +262,12 @@ namespace FCEApp
                 }
                 catch (Exception ex)
                 {
-                    await DisplayAlert("CFE Mensaje",ex.Message,"Ok");
+                    await DisplayAlert("CFE Mensaje", ex.Message, "Ok");
                 }
             }
+            
         }
+
         protected override void OnDisappearing()
         {
             base.OnDisappearing();
