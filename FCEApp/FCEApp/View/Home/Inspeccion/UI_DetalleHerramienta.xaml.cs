@@ -40,7 +40,7 @@ namespace FCEApp
             //----------------------------------
             pickerObsOne.IsVisible = false;
             pickerObs.IsVisible = false;
-            if (cantidadGlobal <= 1)
+            if (cantidadGlobal < 1)
             {
                 LblMensajeErr.IsVisible = true;
                 EntryMalEstado.IsEnabled = false;
