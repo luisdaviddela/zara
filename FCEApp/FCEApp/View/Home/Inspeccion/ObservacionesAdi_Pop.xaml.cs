@@ -87,7 +87,7 @@ namespace FCEApp
             if (PickNames != "" && pickYear != "" && pickTrim != "")
             {
                 await App.Current.MainPage.Navigation.PopAllPopupAsync(true);
-                await App.MasterDetail.Detail.Navigation.PushAsync(new View.Home.Inspeccion.InspeccionTrimestral());
+                await App.MasterDetail.Detail.Navigation.PushAsync(new UI_ObservacionesAdicionales());
             }
             else
             {
