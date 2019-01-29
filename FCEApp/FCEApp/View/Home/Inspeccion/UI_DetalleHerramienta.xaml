@@ -120,14 +120,20 @@
             </Grid>
             <Grid
                  Grid.Row="1"
-                 HorizontalOptions="Center"
                  WidthRequest="200">
 
                 <Button
-                    x:Name="GuardarInfo"
+                    x:Name="CancelarBtn"
                     Grid.Row="2"
                     Grid.Column="0"
-                    Grid.ColumnSpan="2"
+                    Clicked="CancelarBtn_Clicked"
+                    TextColor="White"
+                    BackgroundColor="#0C905F"
+                    Text="Cancelar"/>
+                <Button
+                    x:Name="GuardarInfo"
+                    Grid.Row="2"
+                    Grid.Column="1"
                     TextColor="White"
                     Clicked="GuardarInfo_Clicked"
                     BackgroundColor="#0C905F"

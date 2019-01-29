@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using FCEApp.View;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -204,6 +205,7 @@ namespace FCEApp
             }
         }
 
+
         private async void GuardarInfo_Clicked(object sender, EventArgs e)
         {
             string cb = "0";
@@ -254,11 +256,13 @@ namespace FCEApp
                     string resp = Convert.ToString(resposeString);
                     var obj = JsonConvert.DeserializeObject<object>(resp);
                     string data = Convert.ToString(obj);
-                    var answer = await DisplayAlert("Mensaje", "Desea añadir observaciones adicionales", "Si, añadir", "No, regresar");
-                    if (answer)
-                    {
-                        await Navigation.PushAsync(new UI_ObservacionesAdicionales());
-                    }
+                    await DisplayAlert("Mensaje", data, "Ok");
+                    App.Current.MainPage = new View.CustomMaster();
+                    //var answer = await DisplayAlert("Mensaje", "Desea añadir observaciones adicionales", "Si, añadir", "No, regresar");
+                    //if (answer)
+                    //{
+                    //    await Navigation.PushAsync(new UI_ObservacionesAdicionales());
+                    //}
                 }
                 catch (Exception ex)
                 {
@@ -273,6 +277,10 @@ namespace FCEApp
             base.OnDisappearing();
             Application.Current.Properties.Remove("IdObM");
             Application.Current.Properties.Remove("IdObF");
+        }
+        private void CancelarBtn_Clicked(object sender, EventArgs e)
+        {
+            App.Current.MainPage = new View.CustomMaster();
         }
     }
 }

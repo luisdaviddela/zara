@@ -46,16 +46,17 @@ namespace FCEApp.ViewModel
                 TitleItemMenu = "Pérfil",
                 ImageItemMenu = ""
             });
-            //ListCategories.Add(new MenuModel
-            //{
-            //    IdMenu = 2,
-            //    TitleItemMenu = "Evaluación de equipo y herramienta",
-            //    ImageItemMenu = ""
-            //});
+           
             ListCategories.Add(new MenuModel
             {
                 IdMenu = 3,
                 TitleItemMenu = "Inspección trimestral",
+                ImageItemMenu = ""
+            });
+            ListCategories.Add(new MenuModel
+            {
+                IdMenu = 2,
+                TitleItemMenu = "Obervaciones adicionales",
                 ImageItemMenu = ""
             });
         }
@@ -88,7 +89,7 @@ namespace FCEApp.ViewModel
             else if (SelectedCategories.IdMenu == 2)
             {
                 App.MasterDetail.IsPresented = false;
-                await App.MasterDetail.Detail.Navigation.PushAsync(new View.Home.Evaluacion.EvaluacionEH());
+                await App.MasterDetail.Detail.Navigation.PushAsync(new ObservacionesAdi_Pop());
             }
             else if (selectedCategories.IdMenu == 3)
             {
