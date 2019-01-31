@@ -58,7 +58,8 @@ namespace FCEApp
                 var obj = JsonConvert.DeserializeObject<object>(resp);
                 string data = Convert.ToString(obj);
                 await DisplayAlert("CFE Mensaje", data, "Ok");
-                Application.Current.MainPage = new NavigationPage(new LoginPage());
+                //this.Navigation.RemovePage(this.Navigation.NavigationStack[this.Navigation.NavigationStack.Count - 2]);
+                App.Current.MainPage = new NavigationPage(new CustomMaster());
             }
             catch (Exception ex)
             {
