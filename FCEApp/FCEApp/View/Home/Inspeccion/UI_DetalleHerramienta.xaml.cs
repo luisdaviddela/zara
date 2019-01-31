@@ -257,7 +257,7 @@ namespace FCEApp
                     var obj = JsonConvert.DeserializeObject<object>(resp);
                     string data = Convert.ToString(obj);
                     await DisplayAlert("Mensaje", data, "Ok");
-                    App.Current.MainPage = new View.CustomMaster();
+                    this.Navigation.RemovePage(this.Navigation.NavigationStack[this.Navigation.NavigationStack.Count - 1]);
                     //var answer = await DisplayAlert("Mensaje", "Desea añadir observaciones adicionales", "Si, añadir", "No, regresar");
                     //if (answer)
                     //{
