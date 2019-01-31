@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             Title="Observaciones Adicionales"
              x:Class="FCEApp.UI_ObservacionesAdicionales">
     <ContentPage.Content>
         <StackLayout Padding="15"
@@ -20,12 +21,18 @@
                  Grid.Row="1"
                  HorizontalOptions="Center"
                  WidthRequest="200">
-
+                <Button
+                    x:Name="CancelarBtn"
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    Clicked="CancelarBtn_Clicked"
+                    TextColor="White"
+                    BackgroundColor="#0C905F"
+                    Text="Cancelar"/>
                 <Button
                     x:Name="FinalizarBtn"
                     Grid.Row="2"
-                    Grid.Column="0"
-                    Grid.ColumnSpan="2"
+                    Grid.Column="1"
                     TextColor="White"
                     Clicked="FinalizarBtn_Clicked"
                     BackgroundColor="#0C905F"

@@ -65,5 +65,10 @@ namespace FCEApp
                 await DisplayAlert("CFE Mensaje", ex.Message, "Ok");
             }
         }
+
+        private void CancelarBtn_Clicked(object sender, EventArgs e)
+        {
+            App.Current.MainPage = new NavigationPage(new CustomMaster());
+        }
     }
 }
