@@ -280,7 +280,8 @@ namespace FCEApp
         }
         private void CancelarBtn_Clicked(object sender, EventArgs e)
         {
-            App.Current.MainPage = new View.CustomMaster();
+            //App.Current.MainPage = new View.CustomMaster();
+            this.Navigation.RemovePage(this.Navigation.NavigationStack[this.Navigation.NavigationStack.Count - 1]);
         }
     }
 }
