@@ -18,8 +18,14 @@ namespace FCEApp.View.Home.Inspeccion
 		public InspeccionTrimestral ()
 		{
 			InitializeComponent ();
-           
-          
+            ToolbarItem itemStudy = new ToolbarItem
+            {
+                Icon = "sara.png",
+                Text="Finalizar",
+                Order = ToolbarItemOrder.Primary,
+                Command = new Command(() => Navigation.PushAsync(new UI_ObservacionesAdicionales()))
+            };
+            ToolbarItems.Add(itemStudy);
         }
         protected override void OnAppearing()
         {

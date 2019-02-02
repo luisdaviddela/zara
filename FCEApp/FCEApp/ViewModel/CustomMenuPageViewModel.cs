@@ -53,12 +53,12 @@ namespace FCEApp.ViewModel
                 TitleItemMenu = "Inspección trimestral",
                 ImageItemMenu = ""
             });
-            ListCategories.Add(new MenuModel
-            {
-                IdMenu = 2,
-                TitleItemMenu = "Obervaciones adicionales",
-                ImageItemMenu = ""
-            });
+            //ListCategories.Add(new MenuModel
+            //{
+            //    IdMenu = 2,
+            //    TitleItemMenu = "Obervaciones adicionales",
+            //    ImageItemMenu = ""
+            //});
         }
         #endregion
 
