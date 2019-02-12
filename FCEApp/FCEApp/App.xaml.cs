@@ -17,7 +17,23 @@ namespace FCEApp
 		    AndroidSpecific.Application.SetWindowSoftInputModeAdjust(this,
 		        AndroidSpecific.WindowSoftInputModeAdjust.Resize);
             //MainPage = new CustomMaster();
-            MainPage = new View.LoginPage();
+            if (Application.Current.Properties.ContainsKey("IsLoggedIn"))
+            {
+                var LogedAppProp = Application.Current.Properties["IsLoggedIn"];
+                bool isLoggedIn = Convert.ToBoolean(LogedAppProp);
+                if (isLoggedIn)
+                {
+                    MainPage = new NavigationPage(new CustomMaster());
+                }
+                else
+                {
+                   MainPage = new View.LoginPage();
+                }
+            }
+            else
+            {
+                MainPage = new View.LoginPage();
+            }
 		}
 
 		protected override void OnStart ()
