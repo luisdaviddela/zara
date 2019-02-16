@@ -1,5 +1,6 @@
 using System;
 using FCEApp.View;
+using Plugin.Connectivity;
 using Xamarin.Forms;
 using Xamarin.Forms.PlatformConfiguration;
 using Xamarin.Forms.Xaml;
@@ -38,8 +39,16 @@ namespace FCEApp
 
 		protected override void OnStart ()
 		{
-			// Handle when your app starts
-		}
+            if (!CrossConnectivity.Current.IsConnected)
+            {
+                MainPage.Navigation.PushAsync(new CFEOFFLINE());
+            }
+            else
+            {
+                Application.Current.Properties["IsConn"] = 1;
+                //Application.Current.MainPage.DisplayAlert("ok", "conected", "Ok");
+            }
+        }
 
 		protected override void OnSleep ()
 		{
@@ -48,7 +57,15 @@ namespace FCEApp
 
 		protected override void OnResume ()
 		{
-			// Handle when your app resumes
-		}
+            if (!CrossConnectivity.Current.IsConnected)
+            {
+                MainPage.Navigation.PushAsync(new CFEOFFLINE());
+            }
+            else
+            {
+                Application.Current.Properties["IsConn"] = 1;
+                //Application.Current.MainPage.DisplayAlert("ok", "conected", "Ok");
+            }
+        }
 	}
 }

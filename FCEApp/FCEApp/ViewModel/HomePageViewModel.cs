@@ -23,7 +23,7 @@ namespace FCEApp.ViewModel
         {
             TextHeader = "Perfil";
             TapMenuHamburguerCommand = new Command(TapMenuHamburguer);
-
+            
             try
             {
                 M_Usuario info = new M_Usuario();
