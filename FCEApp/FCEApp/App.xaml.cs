@@ -15,33 +15,41 @@ namespace FCEApp
         public App ()
 		{
 			InitializeComponent();
-		    AndroidSpecific.Application.SetWindowSoftInputModeAdjust(this,
-		        AndroidSpecific.WindowSoftInputModeAdjust.Resize);
             //MainPage = new CustomMaster();
-            if (Application.Current.Properties.ContainsKey("IsLoggedIn"))
+            if (!CrossConnectivity.Current.IsConnected)
             {
-                var LogedAppProp = Application.Current.Properties["IsLoggedIn"];
-                bool isLoggedIn = Convert.ToBoolean(LogedAppProp);
-                if (isLoggedIn)
-                {
-                    MainPage = new NavigationPage(new CustomMaster());
-                }
-                else
-                {
-                   MainPage = new View.LoginPage();
-                }
+                MainPage = new CFEOFFLINE();
             }
             else
             {
-                MainPage = new View.LoginPage();
+                if (Application.Current.Properties.ContainsKey("IsLoggedIn"))
+                {
+                    var LogedAppProp = Application.Current.Properties["IsLoggedIn"];
+                    bool isLoggedIn = Convert.ToBoolean(LogedAppProp);
+                    if (isLoggedIn)
+                    {
+                        MainPage = new NavigationPage(new CustomMaster());
+                    }
+                    else
+                    {
+                       MainPage = new View.LoginPage();
+                    }
+                }
+                else
+                {
+
+                    MainPage = new View.LoginPage();
+                }
             }
+		    AndroidSpecific.Application.SetWindowSoftInputModeAdjust(this,
+		        AndroidSpecific.WindowSoftInputModeAdjust.Resize);
 		}
 
 		protected override void OnStart ()
 		{
             if (!CrossConnectivity.Current.IsConnected)
             {
-                MainPage.Navigation.PushAsync(new CFEOFFLINE());
+                MainPage =new CFEOFFLINE();
             }
             else
             {
@@ -59,7 +67,8 @@ namespace FCEApp
 		{
             if (!CrossConnectivity.Current.IsConnected)
             {
-                MainPage.Navigation.PushAsync(new CFEOFFLINE());
+                //MainPage.Navigation.PushAsync(new CFEOFFLINE());
+                MainPage = new CFEOFFLINE();
             }
             else
             {
