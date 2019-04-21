@@ -49,12 +49,7 @@ namespace FCEApp
 		{
             if (!CrossConnectivity.Current.IsConnected)
             {
-                MainPage =new CFEOFFLINE();
-            }
-            else
-            {
-                Application.Current.Properties["IsConn"] = 1;
-                //Application.Current.MainPage.DisplayAlert("ok", "conected", "Ok");
+                MainPage = new NavigationPage(new CFEOFFLINE());
             }
         }
 
@@ -67,13 +62,7 @@ namespace FCEApp
 		{
             if (!CrossConnectivity.Current.IsConnected)
             {
-                //MainPage.Navigation.PushAsync(new CFEOFFLINE());
-                MainPage = new CFEOFFLINE();
-            }
-            else
-            {
-                Application.Current.Properties["IsConn"] = 1;
-                //Application.Current.MainPage.DisplayAlert("ok", "conected", "Ok");
+                MainPage = new NavigationPage(new CFEOFFLINE());
             }
         }
 	}

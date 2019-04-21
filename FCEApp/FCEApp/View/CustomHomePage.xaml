@@ -37,7 +37,7 @@
                             <Label
                                 TextColor="Black"
                                 HorizontalTextAlignment="Center"
-                                Text="{Binding RPE}"/>
+                                x:Name="RPE"/>
                         </StackLayout>
                         <StackLayout
                             Orientation="Horizontal">
@@ -49,7 +49,7 @@
                             <Label
                                 TextColor="Black"
                                 HorizontalTextAlignment="Center"
-                                Text="{Binding NombreUsuario}"/>
+                                x:Name="NombreUsuario"/>
                         </StackLayout>
                         <StackLayout
                             Orientation="Horizontal">
@@ -61,7 +61,7 @@
                             <Label
                                 TextColor="Black"
                                 HorizontalTextAlignment="Center"
-                                Text="{Binding Division}"/>
+                                x:Name="Division"/>
                         </StackLayout>
                         <StackLayout
                             Orientation="Horizontal">
@@ -73,7 +73,7 @@
                             <Label
                                 TextColor="Black"
                                 HorizontalTextAlignment="Center"
-                                Text="{Binding Zona}"/>
+                                x:Name="Zona"/>
                         </StackLayout>
                         <StackLayout
                             Orientation="Horizontal">
@@ -85,7 +85,7 @@
                             <Label
                                 TextColor="Black"
                                 HorizontalTextAlignment="Center"
-                                Text="{Binding Area}"/>
+                                x:Name="Area"/>
                         </StackLayout>
                         <!--<StackLayout
                             Orientation="Horizontal">
@@ -109,7 +109,7 @@
                             <Label
                                 TextColor="Black"
                                 HorizontalTextAlignment="Center"
-                                Text="{Binding NoEconomico}"/>
+                                x:Name="NoEconomico"/>
                         </StackLayout>
                     </StackLayout>
                 </StackLayout>
