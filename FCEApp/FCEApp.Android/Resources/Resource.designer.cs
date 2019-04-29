@@ -3395,6 +3395,7 @@ namespace FCEApp.Droid
 			global::BottomNavigationBar.Resource.Styleable.ViewStubCompat_android_id = global::FCEApp.Droid.Resource.Styleable.ViewStubCompat_android_id;
 			global::BottomNavigationBar.Resource.Styleable.ViewStubCompat_android_inflatedId = global::FCEApp.Droid.Resource.Styleable.ViewStubCompat_android_inflatedId;
 			global::BottomNavigationBar.Resource.Styleable.ViewStubCompat_android_layout = global::FCEApp.Droid.Resource.Styleable.ViewStubCompat_android_layout;
+			global::Splat.Resource.String.library_name = global::FCEApp.Droid.Resource.String.library_name;
 			global::Xamarin.Forms.Platform.Android.Resource.Attribute.actionBarSize = global::FCEApp.Droid.Resource.Attribute.actionBarSize;
 			global::Zumero.Resource.Animation.abc_fade_in = global::FCEApp.Droid.Resource.Animation.abc_fade_in;
 			global::Zumero.Resource.Animation.abc_fade_out = global::FCEApp.Droid.Resource.Animation.abc_fade_out;

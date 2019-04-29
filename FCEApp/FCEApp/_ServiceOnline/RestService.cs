@@ -6,7 +6,7 @@ namespace FCEApp
 {
     public static class RestService
     {
-        public static string Authority = "http://192.168.0.103/";
+        public static string Authority = "http://192.168.3.50/";
     }
     public static class HttpMethods
     {

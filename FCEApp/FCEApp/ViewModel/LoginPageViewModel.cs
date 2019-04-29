@@ -87,12 +87,12 @@ namespace FCEApp.ViewModel
                 else
                 {
                     //IsEnabled = true;
-                    await App.Current.MainPage.DisplayAlert("Error", "Ingrese su contraseña", "Ok");
+                    await App.Current.MainPage.DisplayAlert("Mensaje", "Ingrese su contraseña", "Ok");
                 }
             }
             else
             {
-                await App.Current.MainPage.DisplayAlert("Error", "Ingrese su RPE", "Ok");
+                await App.Current.MainPage.DisplayAlert("Mensaje", "Ingrese su RPE", "Ok");
                 //IsEnabled = true;
             }
         }

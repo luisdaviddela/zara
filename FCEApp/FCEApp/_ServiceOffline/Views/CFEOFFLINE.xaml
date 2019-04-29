@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<bnb:BottomBarPage xmlns="http://xamarin.com/schemas/2014/forms"
+                   xmlns:bnb="clr-namespace:BottomBar.XamarinForms;assembly=BottomBar.XamarinForms"
+                   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                   xmlns:view="clr-namespace:FCEApp"
+                   Title="Offline"
+                   x:Class="FCEApp.CFEOFFLINE">
+    <ContentPage Title="Herramientas" Icon="herramienta.png"
+                 bnb:BottomBarPageExtensions.TabColor="#00A062">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <ListView x:Name="listViewH" 
+                      SelectedItem="{Binding SelcetedItem,Mode=TwoWay}" 
+              RowHeight="120" 
+              BackgroundColor="White" >
+                <ListView.ItemTemplate >
+                    <DataTemplate >
+                        <ViewCell>
+                            <view:HerramientasTemplate/>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+        </Grid>
+    </ContentPage>
+    <ContentPage Title="Eq.Prueba" Icon="eqprueba.png"
+                 bnb:BottomBarPageExtensions.TabColor="#00A062">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <ListView x:Name="listViewEqP" 
+                      SelectedItem="{Binding SelcetedItem,Mode=TwoWay}" 
+                      ItemSelected="EvetClicked"
+              RowHeight="120" 
+              BackgroundColor="White" >
+                <ListView.ItemTemplate >
+                    <DataTemplate >
+                        <ViewCell>
+                            <view:HerramientasTemplate/>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+        </Grid>
+    </ContentPage>
+    <ContentPage Title="H.Menor" Icon="hmenor"
+                 bnb:BottomBarPageExtensions.TabColor="#00A062">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <ListView x:Name="listViewHMen" 
+                      SelectedItem="{Binding SelcetedItem,Mode=TwoWay}" 
+                      ItemSelected="EvetClicked"
+              RowHeight="120" 
+              BackgroundColor="White" >
+                <ListView.ItemTemplate >
+                    <DataTemplate >
+                        <ViewCell>
+                            <view:HerramientasTemplate/>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+        </Grid>
+    </ContentPage>
+    <ContentPage Title="H.Mayor" Icon="hmayor.png"
+                 bnb:BottomBarPageExtensions.TabColor="#00A062">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <ListView x:Name="listViewHMay" 
+                      SelectedItem="{Binding SelcetedItem,Mode=TwoWay}" 
+                      ItemSelected="EvetClicked"
+              RowHeight="120" 
+              BackgroundColor="White" >
+                <ListView.ItemTemplate >
+                    <DataTemplate >
+                        <ViewCell>
+                            <view:HerramientasTemplate/>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+        </Grid>
+    </ContentPage>
+    <ContentPage Title="Eq.línea viva" Icon="eqlineaviva"
+                 bnb:BottomBarPageExtensions.TabColor="#00A062">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <ListView x:Name="listViewLinV" 
+                      SelectedItem="{Binding SelcetedItem,Mode=TwoWay}" 
+                      ItemSelected="EvetClicked"
+              RowHeight="120" 
+              BackgroundColor="White" >
+                <ListView.ItemTemplate >
+                    <DataTemplate >
+                        <ViewCell>
+                            <view:HerramientasTemplate/>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+        </Grid>
+    </ContentPage>
+    <ContentPage Title="Eq.Seg" Icon="eqseguridad"
+                 bnb:BottomBarPageExtensions.TabColor="#00A062">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <ListView x:Name="listViewEqS" 
+                      SelectedItem="{Binding SelcetedItem,Mode=TwoWay}" 
+                      ItemSelected="EvetClicked"
+              RowHeight="120" 
+              BackgroundColor="White" >
+                <ListView.ItemTemplate >
+                    <DataTemplate >
+                        <ViewCell>
+                            <view:HerramientasTemplate/>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+        </Grid>
+    </ContentPage>
+</bnb:BottomBarPage>

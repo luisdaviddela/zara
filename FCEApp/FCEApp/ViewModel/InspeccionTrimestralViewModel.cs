@@ -8,7 +8,7 @@ using System.Net;
 using System.IO;
 using System.ComponentModel;
 using System.Collections.ObjectModel;
-
+using ReactiveUI;
 namespace FCEApp.ViewModel
 {
     public class InspeccionTrimestralViewModel: INotifyPropertyChanged
@@ -42,13 +42,31 @@ namespace FCEApp.ViewModel
 
         public IList<M_EquipoHerramienta> CardDataCollectionEqSeg { get; set; }
         private ObservableCollection<M_EquipoHerramienta> aprobacionEqSeg;
-
+        //-----------------------------------------------------
+        ServiceHerramientaDB _DbHerramientas;
+        ServiceEqPruebasDB _DbEqPruebas;
+        ServiceHmenorDB _DbHmenor;
+        ServiceHmayor _DbHmayor;
+        ServiceLineaSVivaDB _DblineaSviva;
+        ServiceEqSegDB _DbeqSeg;
+        //-----------------------------------------------------
         public InspeccionTrimestralViewModel()
         {
+            //-----------------------------
+            _DbHerramientas = new ServiceHerramientaDB();
+            _DbEqPruebas = new ServiceEqPruebasDB();
+            _DbHmenor = new ServiceHmenorDB();
+            _DbHmayor = new ServiceHmayor();
+            _DblineaSviva = new ServiceLineaSVivaDB();
+            _DbeqSeg = new ServiceEqSegDB();
+            //-----------------------------
             CardDataCollection = new List<M_EquipoHerramienta>();
             CardDataCollectionEqPrueba = new List<M_EquipoHerramienta>();
             CardDataCollectionHmenor = new List<M_EquipoHerramienta>();
-           
+            CardDataCollectionHmayor = new List<M_EquipoHerramienta>();
+            CardDataCollectionLineaSViva = new List<M_EquipoHerramienta>();
+            CardDataCollectionEqSeg = new List<M_EquipoHerramienta>();
+
             GenerateCardModel();
             GenerateCardModelEqPrueba();
             GenerateCardModelHmenor();
@@ -92,6 +110,19 @@ namespace FCEApp.ViewModel
                             InventarioID = item.InventarioID
                         };
                         CardDataCollection.Add(cardDataAprobaciones);
+                        var todo = new Herramientas()
+                        {
+                            Codigo = item.
+                           Codigo,
+                            Descripcion = item.
+                           Descripcion,
+                            DescUnidad = $"Unidad: {item.DescUnidad}",
+                            Cantidad = item.
+                           Cantidad,
+                            MInventarioEstadoID = item.MInventarioEstadoID,
+                            InventarioID = item.InventarioID
+                        };
+                        _DbHerramientas.CreateItem(todo);
                     }
                 }
             }
@@ -138,6 +169,19 @@ namespace FCEApp.ViewModel
                             InventarioID = item.InventarioID
                         };
                         CardDataCollectionEqPrueba.Add(cardDataAprobaciones);
+                        var todo = new EqPrueba()
+                        {
+                            Codigo = item.
+                         Codigo,
+                            Descripcion = item.
+                         Descripcion,
+                            DescUnidad = $"Unidad: {item.DescUnidad}",
+                            Cantidad = item.
+                         Cantidad,
+                            MInventarioEstadoID = item.MInventarioEstadoID,
+                            InventarioID = item.InventarioID
+                        };
+                        _DbEqPruebas.CreateItem(todo);
                     }
                 }
             }
@@ -184,6 +228,19 @@ namespace FCEApp.ViewModel
                             InventarioID = item.InventarioID
                         };
                         CardDataCollectionHmenor.Add(cardDataAprobaciones);
+                        var todo = new HMenor()
+                        {
+                            Codigo = item.
+                         Codigo,
+                            Descripcion = item.
+                         Descripcion,
+                            DescUnidad = $"Unidad: {item.DescUnidad}",
+                            Cantidad = item.
+                         Cantidad,
+                            MInventarioEstadoID = item.MInventarioEstadoID,
+                            InventarioID = item.InventarioID
+                        };
+                        _DbHmenor.CreateItem(todo);
                     }
                 }
             }
@@ -230,6 +287,19 @@ namespace FCEApp.ViewModel
                             InventarioID = item.InventarioID
                         };
                         CardDataCollectionHmayor.Add(cardDataAprobaciones);
+                        var todo = new HMayor()
+                        {
+                            Codigo = item.
+                       Codigo,
+                            Descripcion = item.
+                       Descripcion,
+                            DescUnidad = $"Unidad: {item.DescUnidad}",
+                            Cantidad = item.
+                       Cantidad,
+                            MInventarioEstadoID = item.MInventarioEstadoID,
+                            InventarioID = item.InventarioID
+                        };
+                        _DbHmayor.CreateItem(todo);
                     }
                 }
             }
@@ -276,6 +346,19 @@ namespace FCEApp.ViewModel
                             InventarioID = item.InventarioID
                         };
                         CardDataCollectionLineaSViva.Add(cardDataAprobaciones);
+                        var todo = new LineaSViva()
+                        {
+                            Codigo = item.
+                     Codigo,
+                            Descripcion = item.
+                     Descripcion,
+                            DescUnidad = $"Unidad: {item.DescUnidad}",
+                            Cantidad = item.
+                     Cantidad,
+                            MInventarioEstadoID = item.MInventarioEstadoID,
+                            InventarioID = item.InventarioID
+                        };
+                        _DblineaSviva.CreateItem(todo);
                     }
                 }
             }
@@ -322,6 +405,19 @@ namespace FCEApp.ViewModel
                             InventarioID = item.InventarioID
                         };
                         CardDataCollectionEqSeg.Add(cardDataAprobaciones);
+                        var todo = new EqSeg()
+                        {
+                            Codigo = item.
+                       Codigo,
+                            Descripcion = item.
+                       Descripcion,
+                            DescUnidad = $"Unidad: {item.DescUnidad}",
+                            Cantidad = item.
+                       Cantidad,
+                            MInventarioEstadoID = item.MInventarioEstadoID,
+                            InventarioID = item.InventarioID
+                        };
+                        _DbeqSeg.CreateItem(todo);
                     }
                 }
             }
@@ -332,6 +428,8 @@ namespace FCEApp.ViewModel
             }
 
         }
+        #region nouseful
+
         public static InspeccionTrimestralViewModel[] GetEqHerramientas()
         {
             int cantidadRows = 0;
@@ -522,6 +620,7 @@ namespace FCEApp.ViewModel
                 return herramientas;
             }
         }
+        #endregion
     }
 }
 
